@@ -15,7 +15,7 @@ if (isset($_SESSION['status']) && $_SESSION['status'] != '') {
 <html lang="en">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-<link rel="stylesheet" href="/css/prostyles.css">
+<link rel="stylesheet" href="nbscalumni/css/prostyle.css">
 
 <head>
     <!-- Required meta tags -->
