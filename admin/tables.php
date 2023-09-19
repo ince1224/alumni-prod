@@ -1,4 +1,10 @@
-<?php 
+<?php
+session_start();
+if (isset($_SESSION['Stud_id'])) {
+    // Redirect back to the form page if Stud_id is not set
+    $Stud_id = $_SESSION['Stud_id'];
+}
+// var_dump($row);
 ?>
 <!DOCTYPE html>
 <?php include('dbcon.php');
@@ -17,9 +23,7 @@
 
     <!-- Custom fonts for this template -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
@@ -70,8 +74,7 @@
                     <span>List Of Students</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Survey Tables</span>
                 </a>
@@ -87,13 +90,11 @@
 
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
                     <i class="fas fa-fw fa-wrench"></i>
                     <span>Utilities</span>
                 </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
+                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Custom Utilities:</h6>
                         <a class="collapse-item" href="utilities-color.php">Colors</a>
@@ -114,8 +115,7 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                    aria-expanded="true" aria-controls="collapsePages">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Pages</span>
                 </a>
@@ -141,7 +141,7 @@
             </li>
 
             <!-- Nav Item - Tables -->
-            
+
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -171,11 +171,9 @@
                     </form>
 
                     <!-- Topbar Search -->
-                    <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                aria-label="Search" aria-describedby="basic-addon2">
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
                             <div class="input-group-append">
                                 <button class="btn btn-primary" type="button">
                                     <i class="fas fa-search fa-sm"></i>
@@ -189,18 +187,14 @@
 
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                         <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-search fa-fw"></i>
                             </a>
                             <!-- Dropdown - Messages -->
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                                aria-labelledby="searchDropdown">
+                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
                                 <form class="form-inline mr-auto w-100 navbar-search">
                                     <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small"
-                                            placeholder="Search for..." aria-label="Search"
-                                            aria-describedby="basic-addon2">
+                                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
                                         <div class="input-group-append">
                                             <button class="btn btn-primary" type="button">
                                                 <i class="fas fa-search fa-sm"></i>
@@ -212,19 +206,16 @@
                         </li>
 
                         <!-- Nav Item - Alerts -->
-                       
+
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                                <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
@@ -255,7 +246,7 @@
 
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">Tables</h1>
-                    
+
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
@@ -269,115 +260,113 @@
                                     <thead>
                                         <tr>
                                             <th>Student ID</th>
-                                          <th>First Name</th>
-                                                <th>Middle Name</th>
-                                                <th>Last Name</th>
-                                                <th>Address</th>
-                                                <th>Date of Birth</th>
-                                                <th>Civil Status</th>
-                                                <th>Gender</th>
-                                                <th>Contact Number</th>
-                                                <th>Educational Background</th>
+                                            <th>First Name</th>
+                                            <th>Middle Name</th>
+                                            <th>Last Name</th>
+                                            <th>Address</th>
+                                            <th>Email</th>
+                                            <th>Batch</th>
+                                            <th>Contact Number</th>
+                                            <th>Civil Status</th>
+                                            <th>Gender</th>
+                                            <th>Date of Birth</th>
+                                            <th>Province</th>
+                                            <th>Zipcode</th>
                                         </tr>
                                     </thead>
-                                    <tfoot>
-                                        
-                                                    <?php
+                                    <tbody>
+                                        <?php
+                                        $host = "localhost";
+                                        $dbname = "dbalumni";
+                                        $username = "root";
+                                        $password = "";
 
-                                                    $user_query = mysqli_query($conn,"select generalinfo.Stud_id,first_name,middlename,last_name,permanent_address,date_of_birth,civil_status,gender,telephone_number,education from generalinfo 
-left outer join education on generalinfo.first_name = education.Stud_id
-GROUP by Stud_id
-order by generalinfo.Stud_id asc;")or die(mysqli_error());
-                                                    while($row = mysqli_fetch_array($user_query)){
-                                                    $id = $row['Stud_id'];
-                                                    ?>
-                                    
-                                                    <tr>
-                                                        
-                                                        <td><?php echo $row['Stud_id']; ?></td>
-                                                        <td><?php echo $row['first_name']; ?></td>
-                                                        <td><?php echo $row['middlename']; ?></td>
-                                                        <td><?php echo $row['last_name']; ?></td>
-                                                        <td><?php echo $row['permanent_address']; ?></td>                                           
-                                                        <td><?php echo $row['date_of_birth']; ?></td>               
-                                                        <td><?php echo $row['civil_status']; ?></td>                
-                                                        <td><?php echo $row['gender']; ?></td>
-                                                        <td><?php echo $row['telephone_number']; ?></td>        
-                                                        <td><?php echo $row['education']; ?></td>       
-                                                    </tr>
-                                                <?php } ?>
-                                        </tbody>
-                                                                    </table>
-                                                                   </fieldset>
+                                        try {
+                                            $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+                                            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                                            $stmt = $pdo->prepare("SELECT * FROM generalinfo"); 
+                                            $stmt->execute();
+                                            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                                            foreach ($result as $row) {    
 
+                                            echo "<tr>";
+                                            echo "<td>{$row['Stud_id']}</td>";
+                                            echo "<td>{$row['first_name']}</td>";
+                                            echo "<td>{$row['middlename']}</td>";
+                                            echo "<td>{$row['last_name']}</td>";
+                                            echo "<td>{$row['address']}</td>";
+                                            echo "<td>{$row['email_address']}</td>";
+                                            echo "<td>{$row['batch']}</td>";
+                                            echo "<td>{$row['telephone_number']}</td>";
+                                            echo "<td>{$row['civil_status']}</td>";
+                                            echo "<td>{$row['gender']}</td>";
+                                            echo "<td>{$row['date_of_birth']}</td>";
+                                            echo "<td>{$row['province']}</td>";
+                                            echo "<td>{$row['zipcode']}</td>";
+                                            echo "</tr>";
+                                        }
+                                    } catch (PDOException $e) {
+                                        echo "Error: " . $e->getMessage();
+                                    }
+                                    $pdo = null;
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <!-- /.container-fluid -->
+                <!-- Scroll to Top Button-->
+                <a class="scroll-to-top rounded" href="#page-top">
+                    <i class="fas fa-angle-up"></i>
+                </a>
 
-            </div>
-            <!-- End of Main Content -->
-
-            <!-- Footer -->
-           
-            <!-- End of Footer -->
-
-        </div>
-        <!-- End of Content Wrapper -->
-
-    </div>
-    <!-- End of Page Wrapper -->
-
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
+                <!-- Logout Modal-->
+                <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                            <div class="modal-footer">
+                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                                <a class="btn btn-primary" href="login.php">Logout</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.php">Logout</a>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+                <!-- Bootstrap core JavaScript-->
+                <script src="vendor/jquery/jquery.min.js"></script>
+                <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+                <!-- Core plugin JavaScript-->
+                <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+                <!-- Custom scripts for all pages-->
+                <script src="js/sb-admin-2.min.js"></script>
 
-    <!-- Page level plugins -->
-    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+                <!-- Page level plugins -->
+                <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+                <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
-    <!-- Page level custom scripts -->
-    <script src="js/demo/datatables-demo.js"></script>
+                <!-- Page level custom scripts -->
+                <script src="js/demo/datatables-demo.js"></script>
 
 </body>
 
 </html>
 <?php
 include('dbcon.php');
-if (isset($_POST['submit'])){
-    
+if (isset($_POST['submit'])) {
+
 ?>
-<script>
-// window.location = "home.php";
-</script>   
+    <script>
+        // window.location = "home.php";
+    </script>
 <?php }
 ?>

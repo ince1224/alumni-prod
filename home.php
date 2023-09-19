@@ -1,191 +1,237 @@
 <?php
-include('admin/dbcon.php');
 session_start();
-if(isset($_SESSION['status']) && $_SESSION['status'] !='')
-            {
-                
-                ?>
-                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                            <strong>Hey!</strong> <?php echo $_SESSION['status']; ?>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                        <?php
-                unset($_SESSION['status']);
-            }
-
-$conn = mysqli_connect('localhost', 'root', '', 'dbalumni') or die(mysqli_error());
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $Stud_id = $_POST['Stud_id'];
-    $first_name = $_POST['first_name'];
-    $middle_name = $_POST['middle_name'];
-    $last_name = $_POST['last_name'];
-    $date_of_birth = $_POST['birthdate'];
-    $permanent_address = $_POST['permanent_address'];
-    $region = $_POST['region'];
-    $zipcode = $_POST['zipcode'];
-    $telephone_number = $_POST['telephone_number'];
-
-    $sql = "UPDATE generalinfo SET
-                first_name='$first_name',
-                middle_name='$middle_name',
-                last_name='$last_name',
-                date_of_birth='$date_of_birth',
-                
-              
-                permanent_address='$permanent_address',
-                region='$region',
-                zipcode='$zipcode',
-                telephone_number='$telephone_number'
-            WHERE Stud_id=$Stud_id";
-
-    $Stud_id = $_GET['Stud_id'];
-    $sql = "SELECT * FROM generalinfo WHERE Stud_id = 20201215";
-    $result = $conn->query($sql);
-
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-    } else {
-        echo "Alumni not found.";
-        exit;
-    }
+require_once 'connectiondb.php';
+if (isset($_SESSION['Stud_id'])) {
+  // Redirect back to the form page if Stud_id is not set
+  $Stud_id = $_SESSION['Stud_id'];
+} else {
+  header("Location: index.php");
+  exit;
 }
+$select1 = $conn->prepare("SELECT a.*,b.* FROM generalinfo a JOIN education b on a.Stud_id=b.Stud_id WHERE a.Stud_id = ?");
+$select1->execute([$Stud_id]);
+$row = $select1->fetch();
+// var_dump($row);
 ?>
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <title>Alumni Profile System</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
-</head>
-<body>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fill Up Form</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/home.css">
+  <style>
+  </style>
+
+
 </head>
 
 <body>
- <form name="aspnetForm" method="post" action="" id="myForm">
-  <div class="top_banner">
-    <div class="in_banner">
-            <div class=" logo">
-              <img alt="jee" src="images/nbsc.png"></div>
-      <div class="banner_text">
-        <h1>
-                  NORTHER BUKIDNON STATE COLLEGE 
-          </h1>
-              <h2>
-                   ALUMNI TRACKING SYSTEM
-              </h2>
+  </nav>
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg py-3 sticky-top navbar-light bg-white">
+        <div class="container">
+        <a class="navbar-brand" href="index.php">
+                <img class="logo" src="img/logov2_adobe_express.svg" alt="">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="userLink" data-bs-toggle="modal" data-bs-target="#userModal">User</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav><!-- //NAVBAR -->
+
+  <div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </button>
+        </div>
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">cancel</button>
+          <a href="logout.php" class="btn btn-danger">Logout</a>
         </div>
       </div>
- <div class="container">
-    <form action="home.php" method="POST" enctype="multipart/form-data">
-        <div class="profile-picture">
-            <input type="file" name="profile_picture" id="file-input" style="display: none;">
-            <div class="profile-picture">
-    <label for="file-input" class="profile-image-label">
-        <div class="image-container">
-            <img id="preview" src="#" alt="Edit Image">
-        </div>
-    </label>
-        </div>
-            </label>
-            </div>
-            <div class="center-container">
-    <span style="font-weight:bold;">Edit Your Profile</span>
     </div>
+  </div>
+
+  <form>
     <div class="container">
-        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
-            <input type="hidden" name="Stud_id" value="<?php echo $Stud_id; ?>">
+      <div class="profile-header">
+        <div class="profile-img">
+          <img src="./img/gg.jpg" width="200" alt="Profile Image">
+          <div>
+          </div>
+        </div>
 
-            <div class="name-fields">
-                <div class="left-field">
-                    <label for="first_name">First Name:</label>
-                    <input type="text" name="first_name" value="<?php echo $row['first_name']; ?>" required>
-                </div>
-                <div class="right-field">
-                    <label for="middle_name">Middle Name:</label>
-                    <input type="text" name="middle_name" value="<?php echo $row['middlename']; ?>">
-                </div>
+        <input type="hidden" name="Stud_id" class="form-control" id="Stud_id" value="<?php echo $row['Stud_id']; ?>" required>
+        <div class="profile-nav-info">
+          <h3 for="first_name" id="first_name"> <?php echo $row['first_name']; ?></h3>
+          <div class="address">
+            <p for="address" id="address"><?php echo $row['address']; ?></p>
+          </div>
+
+        </div>
+        <div class="profile-option">
+          <div class="notification">
+            <i class="fa fa-bell"></i>
+            <span class="alert-message">3</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="main-bd">
+        <div class="left-side">
+          <div class="profile-side">
+            <ul>
+              <li for="school" id="school"><?php echo $row['school']; ?></li>
+            </ul>
+            <ul>
+              <li for="educ" id="educ"><?php echo $row['educ']; ?></li>
+            </ul>
+            <ul>
+              <li for="batch" id="batch">Batch:<?php echo $row['batch']; ?></li>
+            </ul>
+            <ul>
+              <li for="telephone_number" id="telephone_number">Phone No: <?php echo $row['telephone_number']; ?></li>
+            </ul>
+            <ul>
+              <li for="email_address" id="email_address">Email: <?php echo $row['email_address']; ?></li>
+            </ul>
+            <div class="profile-btn">
+              <button class="chatbtn" id="chatBtn"><i class="fa fa-comment"></i> Back</button>
+              <button class="createbtn" id="Create-post" onclick="window.location.href='profile.php'">
+                <i class="fa fa-plus"></i> Edit
+              </button>
+              </button>
             </div>
+            <div class="user-rating">
+              <div class="rate">
+                <div class="star-outer">
+                  <div class="star-inner">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                  </div>
+                </div>
+              </div>
 
-            <div class="name-fields">
-                <div class="left-field">
-                    <label for="last_name">Last Name:</label>
-                    <input type="text" name="last_name" value="<?php echo $row['last_name']; ?>" required>
-                </div>
-                <div class="right-field">
-                    <label for="birthdate">Birthdate:</label>
-                    <input type="date" name="birthdate" value="<?php echo $row['date_of_birth']; ?>">
-                </div>
             </div>
+          </div>
 
-            <div class="name-fields">
-                <div class="left-field">
-                    <label for="civil_status">Civil Status:</label>
-                    <input type="text" name="civil_status" value="<?php echo $row['civil_status']; ?>">
-                </div>
-                <div class="right-field">
-                    <label>Gender:</label>
-                    <div class="gender-buttons">
-                        <label><input type="radio" name="gender" value="Male" <?php echo ($row['gender'] === 'Male') ? 'checked' : ''; ?>> Male</label>
-                        <label><input type="radio" name="gender" value="Female" <?php echo ($row['gender'] === 'Female') ? 'checked' : ''; ?>> Female</label>
+        </div>
+        <div class="right-side">
+
+          <div class="nav">
+            <ul>
+              <li onclick="tabs(0)" class="user-post active">EMPLOYED</li>
+              <li onclick="tabs(1)" class="user-review">UNEMPLOYED</li>
+              <li onclick="tabs(2)" class="user-setting"> SELFEMPLOYED</li>
+            </ul>
+          </div>
+          <form method="post" action="">
+            <div class="profile-body">
+              <div class="profile-posts tab">
+                <div class="container-box">
+                  <div class="mb-5">
+                    <div class="row justify-content-left">
+                      <div class="step" id="step1">
+                        <input type="hidden" name="Stud_id" class="form-control" id="Stud_id" value="<?php echo $row['Stud_id']; ?>" required>
+
+                      </div>
+                      <div class="mb-3">
+                        <label for="employer" class="form-label">1. How long have you been employed in your current job or position?</label>
+                        <input type="text" name="employer" class="form-control" id="employer" required>
+                      </div>
+
+                      <div class="mb-3">
+                        <label for="employer_sector" class="form-label">2. What industry or sector does your current employer operate in?</label>
+                        <input type="text" name="employer_sector" class="form-control" id="employer_sector" required>
+                      </div>
+
+                      <div class="mb-3">
+                        <label for="satisfaction" class="form-label">3. Are you satisfied with your current employment situation?</label>
+                        <input type="text" name="satisfaction" class="form-control" id="satisfaction" required>
+                      </div>
+
+                      <div class="mb-3">
+                        <label for="career_growth" class="form-label">4. Have you experienced any significant career growth or promotions in the past year?</label>
+                        <input type="text" name="career_growth" class="form-control" id="career_growth" required>
+                      </div>
+
+                      <div class="mb-3">
+                        <p></p>
+                        <label for="factors" class="form-label">5. What factors are most important to you in your current job?</label>
+                        <input type="text" name="factors" class="form-control" id="factors" required>
+                      </div>
+                      <button class="btn btn-primary nextBtn" type="button">Submit</button>
                     </div>
+                  </div>
                 </div>
-            </div>
-            <h2 class="contact-title">Tour Most Recent Up Degree/Certificate</h2>
-
-            <h2 class="contact-title">Contact Information</h2>
-
-            <div class="contact-fields">
-                <div class="left-field">
-                    <label for="street_address">Permanent Address:</label>
-                    <input type="text" name="permanent_address" value="<?php echo $row['permanent_address']; ?>">
+              </div>
+              <div class="profile-reviews tab">
+                <h1>User reviews</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam pariatur officia, aperiam quidem quasi, tenetur molestiae. Architecto mollitia laborum possimus iste esse. Perferendis tempora consectetur, quae qui nihil voluptas. Maiores debitis
+                  repellendus excepturi quisquam temporibus quam nobis voluptatem, reiciendis distinctio deserunt vitae! Maxime provident, distinctio animi commodi nemo, eveniet fugit porro quos nesciunt quidem a, corporis nisi dolorum minus sit eaque error
+                  sequi ullam. Quidem ut fugiat, praesentium velit aliquam!</p>
+              </div>
+              <div class="profile-settings tab">
+                <div class="account-setting">
+                  <h1>Acount Setting</h1>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit omnis eaque, expedita nostrum, facere libero provident laudantium. Quis, hic doloribus! Laboriosam nemo tempora praesentium. Culpa quo velit omnis, debitis maxime, sequi
+                    animi dolores commodi odio placeat, magnam, cupiditate facilis impedit veniam? Soluta aliquam excepturi illum natus adipisci ipsum quo, voluptatem, nemo, commodi, molestiae doloribus magni et. Cum, saepe enim quam voluptatum vel debitis
+                    nihil, recusandae, omnis officiis tenetur, ullam rerum.</p>
                 </div>
-                <div class="right-field">
-                    <label for="city">region:</label>
-                    <input type="text" name="region" value="<?php echo $row['region']; ?>">
-                </div>
-            </div>
-
-            <div class="contact-fields">
-                <div class="left-field">
-                    <label for="state_province_region">State/Province/Region:</label>
-                    <input type="text" name="state_province_region" value="<?php echo $row['state_province_region']; ?>">
-                </div>
-                <div class="right-field">
-                    <label for="zipcode">Zipcode:</label>
-                    <input type="text" name="zipcode" value="<?php echo $row['zipcode']; ?>">
-                </div>
-            </div>
-
-            <div class="contact-fields">
-                <label for="contact_number">Telephone Number:</label>
-                <input type="text" name="telephone_number" value="<?php echo $row['telephone_number']; ?>">
-            </div>
-
-            <div class="button-container">
-                <input type="submit" value="Update Alumni" class="btn">
-            </div>
-        </form>
+              </div>
+          </form>
+        </div>
+      </div>
     </div>
-<script>
-    // Display preview of the selected profile picture
-    const input = document.querySelector('input[type="file"]');
-    const preview = document.getElementById('preview');
-    input.addEventListener('change', function () {
-        const file = input.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function (e) {
-                preview.src = e.target.result;
-            };
-            reader.readAsDataURL(file);
-        } else {
-            preview.src = "#";
-        }
-    });
-    header('Location: home.php');
-exit();
-</script>
-</body>
-</html>
+  </form>
+  <footer>
+          <div class="footer-top">
+            <div class="container">
+              <div class="row gy-4">
+              </div>
+              <div class="col-lg-2">
+                <h5 class="text-white">More</h5>
+                <ul class="list-unstyled">
+                  <li><a href="#">Privacy & Policy</a></li>
+                </ul>
+              </div>
 
+              <h5 class="text-white">Contact</h5>
+              <ul class="list-unstyled">
+                <li>Address: NORTHERN BUKIDNON STATE COLLEGE, TANKULAN MANOLO FORTICH BUKIDNON</li>
+                <li>Email: NBSC.EDU.PH</li>
+                <li>Phone: (603) 555-0123</li>
+              </ul>
+            </div>
+            <div class="container">
+              <div class="row">
+              </div>
+        </footer>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="js/all/index.js"></script>
+        
+</body>
+
+</html>
