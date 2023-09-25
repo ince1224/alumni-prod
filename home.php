@@ -74,7 +74,8 @@ $row = $select1->fetch();
     <div class="container">
       <div class="profile-header">
         <div class="profile-img">
-          <img src="./img/gg.jpg" width="200" alt="Profile Image">
+          
+          <img src="hello" src="<?php echo $row['image']?>" width="200" alt="Profile Image">
           <div>
           </div>
         </div>
@@ -228,9 +229,25 @@ $row = $select1->fetch();
               <div class="row">
               </div>
         </footer>
+        <script>
+          let prevScrollPos = window.pageYOffset;
+                    const navbar = document.querySelector('.navbar');
+
+                    window.onscroll = function() {
+                        let currentScrollPos = window.pageYOffset;
+                        if (prevScrollPos > currentScrollPos) {
+                            navbar.style.transform = 'translateY(0)';
+                        } else {
+                            navbar.style.transform = 'translateY(-100%)';
+                        }
+                        prevScrollPos = currentScrollPos;
+                    }
+        </script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
         <script src="js/all/index.js"></script>
+        
+        
         
 </body>
 

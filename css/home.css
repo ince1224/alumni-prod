@@ -1,3 +1,16 @@
+body {
+  font-family: "Sora", sans-serif;
+  line-height: 1.7;
+  color: var(--body);
+  background: rgba(255,255,255,0.5);
+    -webkit-backdrop-filter: blur(7px);
+    backdrop-filter: blur(7px);
+    border: 1px solid rgba(255,255,255,0.25);
+}
+body, h1, h2, ul, li {
+    margin: 0;
+    padding: 0;
+}
 .tabs {
     width: 100%;
   }
@@ -365,10 +378,6 @@ button.createbtn i {
 @media (max-width: 900px) {
   body {
     margin: 0 20px;
-  }
-
-  .profile-header {
-    
   }
 
   .profile-img {

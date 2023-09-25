@@ -1,11 +1,11 @@
 <?php
 session_start();
 
-
+require_once 'connectiondb.php';
 //civil and gender//generalinfo
 
 
-$con = new PDO("mysql:host=localhost;dbname=dbalumni", "root", "");
+$con = $conn;
 
 if (isset($_POST['submit_general_info'])) {
     $Stud_id = $_POST['Stud_id'];
@@ -20,14 +20,15 @@ if (isset($_POST['submit_general_info'])) {
     $province = $_POST['province'];
     $zipcode = $_POST['zipcode'];
     $batch = $_POST['batch'];
-
+    $image = $_POST['image'];
+    
     try {
         // Update education and generalinfo tables with a JOIN on Stud_id
         $query = "UPDATE education AS b
                   JOIN generalinfo AS a ON b.Stud_id = a.Stud_id
                   SET b.school=:school, b.educ=:educ, b.start_year=:start_year, b.end_year=:end_year,
                       a.civil_status=:civil_status, a.gender=:gender, a.telephone_number=:telephone_number,
-                      a.address=:address, a.province=:province, a.zipcode=:zipcode, a.batch=:batch
+                      a.address=:address, a.province=:province, a.zipcode=:zipcode, a.batch=:batch,a.image=:image
                   WHERE a.Stud_id=:Stud_id";
         $statement = $con->prepare($query);
 
@@ -43,19 +44,18 @@ if (isset($_POST['submit_general_info'])) {
             ':province' => $province,
             ':zipcode' => $zipcode,
             ':batch' => $batch,
-            ':Stud_id' => $Stud_id
+            ':Stud_id' => $Stud_id,
+            ':image' =>  $targetFilePath
         ];
 
         $query_execute = $statement->execute($data);
-        
+
         redirectToAnotherPage("Update Success", "home.php");
         if ($query_execute) {
             session_start();
             $_SESSION['status'] = "Update Success";
             header('location: index..php');
             exit;
-
-            
         } else {
             session_start();
             $_SESSION['status'] = "Query Error";
@@ -66,7 +66,44 @@ if (isset($_POST['submit_general_info'])) {
         // Handle the database error here, e.g., log it or display an error message
         echo "Error: " . $e->getMessage();
     }
+} elseif (isset($_FILES['upload_image'])) {
+    // Handle image upload
+    $targetDir = "upload_image/";
+
+    // Generate a unique filename for the uploaded file
+    $uniqueFilename = uniqid() . "_" . $_FILES["upload_image"]["name"];
+
+    // Define the full path to save the file
+    $targetFilePath = $targetDir . $uniqueFilename;
+
+
+    // Check if the file is an image
+    $imageFileType = strtolower(pathinfo($targetFilePath, PATHINFO_EXTENSION));
+    if (in_array($imageFileType, ["jpg", "jpeg", "png"])) {
+        // Move the uploaded file to the target directory
+        if (move_uploaded_file($_FILES["upload_image"]["tmp_name"], $targetFilePath)) {
+            try {
+                // Insert the file path into the generalinfo table
+                $insertQuery = "INSERT INTO generalinfo (Stud_id, image) VALUES (:Stud_id, :image)";
+                $stmt = $con->prepare($insertQuery);
+                $stmt->bindParam(":image", $targetFilePath);
+                $stmt->execute();
+
+                echo "Image uploaded successfully!";
+            } catch (PDOException $e) {
+                // Handle the database error here, e.g., log it or display an error message
+                echo "Error: " . $e->getMessage();
+            }
+        } else {
+            echo "Sorry, there was an error uploading your file.";
+        }
+    } else {
+        echo "Invalid file format. Please upload a JPG, JPEG, or PNG image.";
+    }
 }
+    
+    
+
 //update
 $connection = mysqli_connect('localhost', 'root', '', 'dbalumni');
 
@@ -122,4 +159,6 @@ if (isset($_POST['Login'])) {
     }
 }
 
-?>
+
+
+        
