@@ -25,7 +25,19 @@ $row = $select1->fetch();
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/home.css">
+  <link href="./css/font.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/icon.css">
+    <link rel="stylesheet" href="./css/all.min.css">
+    <link rel="stylesheet" href="./css/bootstrap5.min.css">
+    <link rel="stylesheet" href="css/home.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous">
+        </script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+        </script>
   <style>
   </style>
 
@@ -115,25 +127,11 @@ $row = $select1->fetch();
               <li for="email_address" id="email_address">Email: <?php echo $row['email_address']; ?></li>
             </ul>
             <div class="profile-btn">
-              <button class="chatbtn" id="chatBtn"><i class="fa fa-comment"></i> Back</button>
+              <button class="chatbtn" id="chatBtn"><i></i> Back</button>
               <button class="createbtn" id="Create-post" onclick="window.location.href='profile.php'">
-                <i class="fa fa-plus"></i> Edit
+                <i></i> Edit
               </button>
               </button>
-            </div>
-            <div class="user-rating">
-              <div class="rate">
-                <div class="star-outer">
-                  <div class="star-inner">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                  </div>
-                </div>
-              </div>
-
             </div>
           </div>
 
