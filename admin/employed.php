@@ -26,7 +26,8 @@
 
     <!-- Custom styles for this page -->
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 
 <body id="page-top">
@@ -42,7 +43,7 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+                <div class="sidebar-brand-text mx-3">NBSC ALUMNI DASHBOARD</sup></div>
             </a>
 
             <!-- Divider -->
@@ -69,6 +70,12 @@
                     <i class="fas fa-fw fa-table"></i>
                     <span>List Of Students</span></a>
             </li>
+            <!-- Nav2 Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link" href="education.php">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Education</span></a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
@@ -78,10 +85,10 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Survey Tables:</h6>
-                        <a class="collapse-item" href="employed.php">Employed Student</a>
+                        <a class="collapse-item" href="employed.php">Employed</a>
                         <a class="collapse-item" href="selfemployed.php">Self Employed</a>
-                        <a class="collapse-item" href="unemployed.php">Unemployed Student</a>
-                        
+                        <a class="collapse-item" href="unemployed.php">Unemployed</a>
+                    
                     </div>
                 </div>
             </li>
@@ -270,40 +277,61 @@
                                     <thead>
                                         <tr>
                                             <th>Student ID</th>
-                                          <th>Name</th>
-                                                <th>Middle Name</th>
-                                                <th>Last Name</th>
-                                                <th>Organization</th>
-                                                <th>Qualification</th>
-                                                <th>Income</th>
-                                                <th>Professional Skills</th>
-                                                <th>Action<th>
+                                            <th>First Name</th>
+                                            <th>Middle Name</th>
+                                            <th>Last Name</th>
+                                            <th>Address</th>
+                                            <th>Email</th>
+                                            <th>Batch</th>
+                                            <th>Contact Number</th>
+                                            <th>Civil Status</th>
+                                            <th>Gender</th>
+                                            <th>Date of Birth</th>
+                                            <th>Province</th>
+                                            <th>Zipcode</th>
                                         </tr>
                                     </thead>
-                                    <tfoot>
-                                                    <?php
-                                                    $user_query = mysqli_query($conn,"select * from employed_data order by Stud_id asc")or die(mysqli_error());
-                                                    while($row = mysqli_fetch_array($user_query)){
-                                                    $id = $row['Stud_id'];
-                                                    ?>
-                                    
-                                                    <tr>
-                                                        <td><?php echo $row['Stud_id']; ?></td>
-                                                        <td><?php echo $row['name']; ?></td>
-                                                        <td><?php echo $row['middlename']; ?></td>
-                                                        <td><?php echo $row['lastname']; ?></td>
-                                                        <td><?php echo $row['organization']; ?></td>
-                                                        <td><?php echo $row['qualifications']; ?></td>
-                                                        <td><?php echo $row['income']; ?></td>
-                                                        <td><?php echo $row['skills']; ?></td>
-                                                        <td><a href="print_employed.php<?php echo '?id='.$id; ?>" class = "btn btn-danger">Print</a></td>
-                                                    </tr>
-                                                
-                                                <?php } ?>
-                                        </tbody>
-                                                                    </table>
-                                                                   </fieldset>
+                                    <tbody>
+                                        <?php
+                                        $host = "localhost";
+                                        $dbname = "dbalumni";
+                                        $username = "root";
+                                        $password = "";
 
+                                        try {
+                                            $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+                                            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                                            $stmt = $pdo->prepare("SELECT * FROM generalinfo"); 
+                                            $stmt->execute();
+                                            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                                            foreach ($result as $row) {    
+
+                                            echo "<tr>";
+                                            echo "<td>{$row['Stud_id']}</td>";
+                                            echo "<td>{$row['first_name']}</td>";
+                                            echo "<td>{$row['middlename']}</td>";
+                                            echo "<td>{$row['last_name']}</td>";
+                                            echo "<td>{$row['address']}</td>";
+                                            echo "<td>{$row['email_address']}</td>";
+                                            echo "<td>{$row['batch']}</td>";
+                                            echo "<td>{$row['telephone_number']}</td>";
+                                            echo "<td>{$row['civil_status']}</td>";
+                                            echo "<td>{$row['gender']}</td>";
+                                            echo "<td>{$row['date_of_birth']}</td>";
+                                            echo "<td>{$row['province']}</td>";
+                                            echo "<td>{$row['zipcode']}</td>";
+                                            echo "</tr>";
+                                        }
+                                    } catch (PDOException $e) {
+                                        echo "Error: " . $e->getMessage();
+                                    }
+                                    $pdo = null;
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <!-- /.container-fluid -->
 
@@ -346,6 +374,9 @@
     </div>
 
     <!-- Bootstrap core JavaScript-->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 

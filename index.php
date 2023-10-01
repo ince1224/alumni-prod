@@ -2,38 +2,133 @@
 session_start();
 if (isset($_SESSION['status']) && $_SESSION['status'] != '') {
     ?>
-    <div class="alert alert-success alert-dismissible custom-fade" role="alert">
-        <strong>Hey!</strong>
-        <?php echo $_SESSION['status']; ?>
+    <div id="errorAlert" class="alert alert-danger alert-dismissible custom-fade">
+        <strong>Hey!</strong> <?php echo $_SESSION['status']; ?>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     <?php
-    unset($_SESSION['status']);
+    unset($_SESSION['status']); // Clear the session message after displaying it
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-<link rel="stylesheet" href="nbscalumni/css/prostyle.css">
-
 <head>
     <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="prostyles.css" />
+    <link href="./css/font.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/icon.css">
+    <link rel="stylesheet" href="./css/all.min.css">
+    <link rel="stylesheet" href="./css/bootstrap5.min.css">
+    <link rel="stylesheet" href="./css/prostyle.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
         integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous">
         </script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
         </script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    
 
     <title>NBSC Alumni</title>
 </head>
+<style>
+    body {
+        font-family: 'Varela Round', sans-serif;
+    }
+
+    .modal-confirm {
+        color: #636363;
+        width: 325px;
+        margin: 30px auto;
+    }
+
+    .modal-confirm .modal-content {
+        padding: 20px;
+        border-radius: 5px;
+        border: none;
+    }
+
+    .modal-confirm .modal-header {
+        border-bottom: none;
+        position: relative;
+    }
+
+    .modal-confirm h4 {
+        text-align: center;
+        font-size: 26px;
+        margin: 30px 0 -15px;
+        width: calc(200% - 81px);
+    }
+
+    .modal-confirm .form-control,
+    .modal-confirm .btn {
+        min-height: 40px;
+        border-radius: 3px;
+    }
+
+    .modal-confirm .close {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+    }
+
+    .modal-confirm .modal-footer {
+        border: none;
+        text-align: center;
+        border-radius: 5px;
+        font-size: 13px;
+    }
+
+    .modal-confirm .icon-box {
+        color: #fff;
+        position: absolute;
+        margin: 0 auto;
+        left: 0;
+        right: 0;
+        top: -70px;
+        width: 95px;
+        height: 95px;
+        border-radius: 50%;
+        z-index: 9;
+        background: #82ce34;
+        padding: 15px;
+        text-align: center;
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+    }
+
+    .modal-confirm .icon-box i {
+        font-size: 58px;
+        position: relative;
+        top: 3px;
+    }
+
+    .modal-confirm.modal-dialog {
+        margin-top: 80px;
+    }
+
+    .modal-confirm .btn {
+        color: #fff;
+        border-radius: 4px;
+        background: #82ce34;
+        text-decoration: none;
+        transition: all 0.4s;
+        line-height: normal;
+        border: none;
+        width: calc(200% - 81px);
+    }
+
+    .modal-confirm .btn:hover,
+    .modal-confirm .btn:focus {
+        background: #6fb32b;
+        outline: none;
+    }
+
+    .trigger-btn {
+        display: inline-block;
+        margin: 100px auto;
+    }
+</style>
 
 <body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="70">
     <nav class="navbar navbar-expand-lg py-3 sticky-top navbar-light bg-white">
@@ -70,33 +165,21 @@ if (isset($_SESSION['status']) && $_SESSION['status'] != '') {
             <div class="modal-content">
                 <div class="modal-header">
 
-                    <form action="code.php" method="POST">
+                    <form id="signupForm" action="code.php" method="POST">
+
                         <h1 class="modal-title fs-5" id="staticBackdropLabel">Sign Up</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
 
-
-
-                    <style>
-                        .form-group {
-                            margin-bottom: 15px;
-                            /* Adjust the spacing between form groups */
-                        }
-
-                        .input-group-text i {
-                            font-size: 2em;
-                            /* Adjust the icon size */
-                        }
-                    </style>
-
                     <div class="form-group mb-3 input-div">
                         <label>Student ID</label>
                         <div class="input-group">
                             <div class="input-group-prepend">
-                                <span class="input-group-text">
-                                    <i class="fas fa-user"></i>
-                                </span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                                    </svg>
                             </div>
                             <input type="Stud_id" class="form-control" name="Stud_id" placeholder="Student Id">
                         </div>
@@ -105,9 +188,10 @@ if (isset($_SESSION['status']) && $_SESSION['status'] != '') {
                         <label>First Name</label>
                         <div class="input-group">
                             <div class="input-group-prepend">
-                                <span class="input-group-text">
-                                    <i class="fas fa-user"></i>
-                                </span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                                    </svg>
                             </div>
                             <input type="first_name" class="form-control" name="first_name"
                                 placeholder="Enter First Name">
@@ -117,9 +201,10 @@ if (isset($_SESSION['status']) && $_SESSION['status'] != '') {
                         <label>Lastname</label>
                         <div class="input-group">
                             <div class="input-group-prepend">
-                                <span class="input-group-text">
-                                    <i class="fas fa-user"></i>
-                                </span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                                    </svg>
                             </div>
                             <input type="last_name" class="form-control" name="last_name" placeholder="Enter Last Name">
                         </div>
@@ -128,23 +213,12 @@ if (isset($_SESSION['status']) && $_SESSION['status'] != '') {
                         <label>Email</label>
                         <div class="input-group">
                             <div class="input-group-prepend">
-                                <span class="input-group-text">
-                                    <i class="fas fa-envelope"></i>
-                                </span>
+                            <svg class="svg-icon-envelope" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
+                            </svg>
                             </div>
                             <input type="eaddress" class="form-control" name="eaddress"
                                 placeholder="Enter Email Address">
-                        </div>
-                    </div>
-                    <div class="form-group mb-3 input-div">
-                        <label>Date of Birth</label>
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">
-                                    <i class="far fa-calendar-alt"></i>
-                                </span>
-                            </div>
-                            <input type="date" class="form-control" name="dob" placeholder="Enter Date of Birth">
                         </div>
                     </div>
 
@@ -152,14 +226,41 @@ if (isset($_SESSION['status']) && $_SESSION['status'] != '') {
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="Submit" name="Login" class="btn btn-primary">Login</button>
+                    <button type="button" class="btn btn-primary nextBtn" id="loginBtn">Login</button>
                 </div>
             </div>
-            </form>
+
         </div>
     </div>
+    <div id="myModal" class="modal fade">
+        <div class="modal-dialog modal-confirm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="icon-box">
+                        <i class="material-icons">&#xE876;</i>
+                    </div>
+                    <h4 class="modal-title">WELCOME!</h4>
+                </div>
+                <div class="modal-body">
+                    <p class="text-center">You may now proceed.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" name="Login" class="btn btn-primary">Login</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </form>
+
+
+    <!-- modal -->
+
+
+    <!-- Modal HTML -->
+
     <!-- HERO -->
-    <div class="form-group mb-1">
+    <div class="form-group mb-0">
     </div>
     <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
@@ -183,6 +284,7 @@ if (isset($_SESSION['status']) && $_SESSION['status'] != '') {
     </div>
     <div class="form-group mb-3">
     </div>
+    
     </div>
     <!-- //HERO -->
     <div class="container">
@@ -251,7 +353,54 @@ if (isset($_SESSION['status']) && $_SESSION['status'] != '') {
         </div>
         </footer>
 
+        
+        <script>
+            document.getElementById("loginBtn").addEventListener("click", function () {
+                // Check if the required fields are empty
+                const studentId = document.querySelector('input[name="Stud_id"]').value;
+                const firstName = document.querySelector('input[name="first_name"]').value;
+                const lastName = document.querySelector('input[name="last_name"]').value;
+                const email = document.querySelector('input[name="eaddress"]').value;
+                
+
+                if (!studentId || !firstName || !lastName || !email) {
+                    alert("Please fill in all the required fields.");
+                } else {
+                    const accountExists = true; // Replace this with your actual check
+
+                    if (accountExists) {
+                        // Hide the first modal
+                        $("#staticBackdrop").modal("hide");
+
+                        // Show the second modal
+                        $("#myModal").modal("show");
+                    } else {
+                        // Display an alert message for non-existing accounts.
+                        alert($_SESSION['status']);
+                    }
+                }
+            });
+        </script>
+
+        <script>
+            let prevScrollPos = window.pageYOffset;
+            const navbar = document.querySelector('.navbar');
+
+            window.onscroll = function () {
+                let currentScrollPos = window.pageYOffset;
+                if (prevScrollPos > currentScrollPos) {
+                    navbar.style.transform = 'translateY(0)';
+                } else {
+                    navbar.style.transform = 'translateY(-100%)';
+                }
+                prevScrollPos = currentScrollPos;
+            }
+        </script>
+        <script src="./js/jquery.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="./js/bootstrap5.min.js"></script>
+        <script src="./js/jquery-3.6.0.min.js"></script>
+        <script src="./js/popper.min.js"></script>
         <script src="js/all/index.js"></script>
         </script>
 </body>

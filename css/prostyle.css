@@ -198,19 +198,46 @@ img {
   text-align: center;
   margin-bottom: 20px;
 }
-.input-group {
-  display: flex; /* Make the input-group items flex items */
-  margin: 0 17px;
-  margin-bottom: 5px; /* Adjust the margin-bottom as needed */
+.form-group {
+  margin-bottom: 15px;
+  /* Adjust the spacing between form groups */
 }
+
+.input-group-text i {
+  font-size: 2em;
+  /* Adjust the icon size */
+}
+
+.input-group {
+  display: flex;
+  margin: 0 17px;
+  margin-bottom: 1px;
+  border-radius: 0 8.5px 8.5px 0;
+}
+
+
+.bi-person-circle {
+  width: 50px; 
+  height: 50px; 
+}
+.svg-icon {
+  width: 50px; /* Set your desired width */
+  height: 50px; /* Set your desired height */
+  fill: #000; /* Set the color of the icon */
+}
+.svg-icon-envelope {
+  width: 50px; /* Set your desired width */
+  height: 50px; /* Set your desired height */
+  fill: #000; /* Set the color of the icon */
+}
+
 
 /* Adjust the size of the text boxes */
 .form-control {
-  width: calc(200% - 77px);
-  padding: 10px;
-  font-size: 18px;
-  text-align: left;
-  margin: 0 20px;
+  background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #000; /* Adjust the color as needed */
+    border-radius: 0;
 }
 
 .form-control {
@@ -218,6 +245,7 @@ img {
   font-size: 18px;
   text-align: left;
   margin: 0 51px;
+  background-color: transparent;
 }
 
 
@@ -251,3 +279,108 @@ img {
 .row.justify-content-left {
   width: 100%;
 }
+body {
+  font-family: 'Varela Round', sans-serif;
+}
+
+.modal-content{
+  background: rgba(255,255,255,0.5);
+-webkit-backdrop-filter: blur(10px);
+backdrop-filter: blur(10px);
+border: 1px solid rgba(255,255,255,0.25);
+}
+ .modal-confirm {
+        color: #636363;
+        width: 325px;
+        margin: 30px auto;
+    }
+
+    .modal-confirm .modal-content {
+        padding: 20px;
+        border-radius: 5px;
+        border: none;
+    }
+
+    .modal-confirm .modal-header {
+        border-bottom: none;
+        position: relative;
+        color: #0a0a0a;
+    }
+    .modal-body{
+      color: #0a0a0a;
+    }
+
+    .modal-confirm h4 {
+        text-align: center;
+        font-size: 26px;
+        margin: 30px 0 -15px;
+        width: calc(200% - 81px);
+    }
+
+    .modal-confirm .form-control,
+    .modal-confirm .btn {
+        min-height: 40px;
+        border-radius: 3px;
+    }
+
+    .modal-confirm .close {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+    }
+
+    .modal-confirm .modal-footer {
+        border: none;
+        text-align: center;
+        border-radius: 5px;
+        font-size: 13px;
+    }
+
+    .modal-confirm .icon-box {
+        color: #fff;
+        position: absolute;
+        margin: 0 auto;
+        left: 0;
+        right: 0;
+        top: -70px;
+        width: 95px;
+        height: 95px;
+        border-radius: 50%;
+        z-index: 9;
+        background: #82ce34;
+        padding: 15px;
+        text-align: center;
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+    }
+
+    .modal-confirm .icon-box i {
+        font-size: 58px;
+        position: relative;
+        top: 3px;
+    }
+
+    .modal-confirm.modal-dialog {
+        margin-top: 80px;
+    }
+
+    .modal-confirm .btn {
+        color: #fff;
+        border-radius: 4px;
+        background: #82ce34;
+        text-decoration: none;
+        transition: all 0.4s;
+        line-height: normal;
+        border: none;
+        width: calc(200% - 81px);
+    }
+
+    .modal-confirm .btn:hover,
+    .modal-confirm .btn:focus {
+        background: #6fb32b;
+        outline: none;
+    }
+
+    .trigger-btn {
+        display: inline-block;
+        margin: 100px auto;
+    }
