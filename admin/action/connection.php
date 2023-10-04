@@ -1,27 +1,20 @@
 <?php
-// Database connection parameters
 $host = "localhost";
 $dbname = "dbalumni";
 $username = "root";
 $password = "";
 
 try {
-    // Create a PDO instance
+    // Create a PDO instance for the first query
     $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
 
     // Set the PDO error mode to exception
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    // Prepare the SQL query to count the number of students
-    $stmt = $pdo->prepare("SELECT COUNT(*) as count FROM generalinfo WHERE user_exists_column = 1"); // Replace 'your_table_name' with the actual table name and 'user_exists_column' with the column that indicates user existence
-
-    // Execute the query
+    // First Query: Count the number of students
+    $query = "SELECT COUNT(*) as COUNT FROM education WHERE educ = 'BSIT'";
     $stmt->execute();
-
-    // Fetch the count result
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
-    
-    // Get the count value
     $studentCount = $result['count'];
 
     // Display the count in the HTML structure
@@ -43,9 +36,6 @@ try {
         </div>';
 
 } catch (PDOException $e) {
-    echo "Error: " . $e->getMessage();
+    echo "Error in the first query: " . $e->getMessage();
 }
-
-// Close the database connection
-$pdo = null;
 ?>

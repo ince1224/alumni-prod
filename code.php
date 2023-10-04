@@ -18,8 +18,11 @@ if (isset($_POST['submit_general_info'])) {
     $telephone_number = $_POST['telephone_number'];
     $address = $_POST['address'];
     $province = $_POST['province'];
+    $region = $_POST['region'];
     $zipcode = $_POST['zipcode'];
     $batch = $_POST['batch'];
+    $age = $_POST['age'];
+    $date_created = $_POST['date_created'];
     $image = $_POST['image'];
     
     try {
@@ -27,8 +30,8 @@ if (isset($_POST['submit_general_info'])) {
         $query = "UPDATE education AS b
                   JOIN generalinfo AS a ON b.Stud_id = a.Stud_id
                   SET b.school=:school, b.educ=:educ, b.start_year=:start_year, b.end_year=:end_year,
-                      a.civil_status=:civil_status, a.gender=:gender, a.telephone_number=:telephone_number,
-                      a.address=:address, a.province=:province, a.zipcode=:zipcode, a.batch=:batch,a.image=:image
+                     a.date_created=:date_created, a.civil_status=:civil_status, a.gender=:gender, a.telephone_number=:telephone_number,
+                      a.address=:address, a.province=:province, a.region=:region, a.zipcode=:zipcode, a.batch=:batch, a.age=:age, a.image=:image
                   WHERE a.Stud_id=:Stud_id";
         $statement = $con->prepare($query);
 
@@ -42,8 +45,11 @@ if (isset($_POST['submit_general_info'])) {
             ':telephone_number' => $telephone_number,
             ':address' => $address,
             ':province' => $province,
+            ':region' => $region,
             ':zipcode' => $zipcode,
             ':batch' => $batch,
+            ':age' => $age,
+            ':date_created' => $date_created,
             ':Stud_id' => $Stud_id,
             ':image' =>  $targetFilePath
         ];
@@ -159,6 +165,7 @@ if (isset($_POST['Login'])) {
     }
 }
 
+// employed
 
 
         

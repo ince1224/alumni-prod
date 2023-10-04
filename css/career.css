@@ -1,0 +1,125 @@
+body {
+  font-family: "Sora", sans-serif;
+  line-height: 1.7;
+  color: var(--body);
+  background: rgba(255,255,255,0.5);
+    -webkit-backdrop-filter: blur(7px);
+    backdrop-filter: blur(7px);
+    border: 1px solid rgba(255,255,255,0.25);
+}
+body, h1, h2, ul, li {
+    margin: 0;
+    padding: 0;
+}
+.tabs {
+    width: 100%;
+  }
+  
+  .tab-nav {
+    display: flex;
+    background: #f0f0f0;
+  }
+  
+  .nav-item {
+    display: block;
+    padding: 16px;
+    cursor: pointer;
+  
+    &.selected {
+      font-weight: bold;
+      background: #fff;
+    }
+  }
+  
+  .tab {
+    display: none;
+    padding: 16px;
+  
+    &.selected {
+      display: block;
+    }
+  }
+  
+  .tab-pag {
+    padding: 0 16px;
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .pag-item {
+    display: block;
+    padding: 12px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 8px;
+  
+    &:last-child {
+      margin-right: 0;
+    }
+  
+    &.hidden {
+      display: none;
+    }
+  }
+  
+  .pag-item-submit {
+    flex: 0 1 180px;
+    font-size: 1rem;
+    color: #fff;
+    border-color: #696969;
+    background: #696969;
+  }
+  
+  a {
+    color: var(--dark);
+    text-decoration: none;
+  }
+  
+  img {
+    width: 100%;
+  }
+  
+  .navbar {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Customize the shadow color and properties */
+    background-color: #fff;
+    /* Customize the background color of the navbar */
+    padding: 10px 0;
+    /* Add padding for spacing */
+  }
+  
+  .logo {
+    width: 160px;
+  }
+  
+  .navbar .nav-link {
+    font-size: 14px;
+    font-weight: 700;
+  }
+  
+  .navbar .nav-link.active {
+    color: var(--primary) !important;
+  }
+  .btn {
+    padding: 14px 19px;
+    border-width: 2px;
+    border-radius: 5px;
+    margin: 0 7px 1px;
+    background-color: #007bff; /* Background color */
+    color: #fff; /* Text color */
+    font-weight: bold;
+    text-transform: uppercase; /* Convert text to uppercase */
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .btn:hover {
+    background-color: #0056b3; /* Hover background color */
+    color: #fff; /* Hover text color */
+  }
+.form-control{
+  border-radius: 0;
+  border: none;
+  background: #eeeeee;
+}

@@ -138,6 +138,7 @@ body, h1, h2, ul, li {
   height: 200px;
 }
 
+
 .profile-img img {
   border-radius: 50%;
   height: 230px;
@@ -485,4 +486,27 @@ button.createbtn i {
   display: block;
   font-weight: bold;
   margin: 0 30px 10px;
+}
+.modal-dialog {
+  max-width: 400px; /* Set the maximum width of the modal */
+}
+
+/* Style the modal header */
+.modal-header {
+  background-color: #007bff; /* Background color */
+  color: white; /* Text color */
+}
+
+/* Style the modal body */
+.modal-body {
+  background-color: #f8f9fa; /* Background color */
+  display: flex;
+  flex-direction: column; /* Arrange items in a column */
+  gap: 0px;
+}
+
+/* Style the form controls (input fields) */
+.form-control {
+  width: 80%; /* Adjust the width as needed */
+  margin: 0 auto; /* Center the input fields horizontally */
 }

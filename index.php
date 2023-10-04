@@ -2,15 +2,15 @@
 session_start();
 if (isset($_SESSION['status']) && $_SESSION['status'] != '') {
     ?>
-    <div class="alert alert-success alert-dismissible custom-fade" role="alert">
-        <strong>Hey!</strong>
-        <?php echo $_SESSION['status']; ?>
+    <div id="errorAlert" class="alert alert-danger alert-dismissible custom-fade">
+        <strong>Hey!</strong> <?php echo $_SESSION['status']; ?>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     <?php
-    unset($_SESSION['status']);
+    unset($_SESSION['status']); // Clear the session message after displaying it
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,9 +25,10 @@ if (isset($_SESSION['status']) && $_SESSION['status'] != '') {
         </script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
         </script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    
 
     <title>NBSC Alumni</title>
 </head>
@@ -220,17 +221,6 @@ if (isset($_SESSION['status']) && $_SESSION['status'] != '') {
                                 placeholder="Enter Email Address">
                         </div>
                     </div>
-                    <div class="form-group mb-3 input-div">
-                        <label>Date of Birth</label>
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">
-                                    <i class="far fa-calendar-alt"></i>
-                                </span>
-                            </div>
-                            <input type="date" class="form-control" name="dob" placeholder="Enter Date of Birth">
-                        </div>
-                    </div>
 
 
                 </div>
@@ -363,6 +353,50 @@ if (isset($_SESSION['status']) && $_SESSION['status'] != '') {
         </div>
         </footer>
 
+        
+        <script>
+            document.getElementById("loginBtn").addEventListener("click", function () {
+                // Check if the required fields are empty
+                const studentId = document.querySelector('input[name="Stud_id"]').value;
+                const firstName = document.querySelector('input[name="first_name"]').value;
+                const lastName = document.querySelector('input[name="last_name"]').value;
+                const email = document.querySelector('input[name="eaddress"]').value;
+                
+
+                if (!studentId || !firstName || !lastName || !email) {
+                    alert("Please fill in all the required fields.");
+                } else {
+                    const accountExists = true; // Replace this with your actual check
+
+                    if (accountExists) {
+                        // Hide the first modal
+                        $("#staticBackdrop").modal("hide");
+
+                        // Show the second modal
+                        $("#myModal").modal("show");
+                    } else {
+                        // Display an alert message for non-existing accounts.
+                        alert($_SESSION['status']);
+                    }
+                }
+            });
+        </script>
+
+        <script>
+            let prevScrollPos = window.pageYOffset;
+            const navbar = document.querySelector('.navbar');
+
+            window.onscroll = function () {
+                let currentScrollPos = window.pageYOffset;
+                if (prevScrollPos > currentScrollPos) {
+                    navbar.style.transform = 'translateY(0)';
+                } else {
+                    navbar.style.transform = 'translateY(-100%)';
+                }
+                prevScrollPos = currentScrollPos;
+            }
+        </script>
+        <script src="./js/jquery.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="./js/bootstrap5.min.js"></script>
         <script src="./js/jquery-3.6.0.min.js"></script>

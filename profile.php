@@ -34,10 +34,10 @@ $row = $select1->fetch();
         </script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
         </script>
     </style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
 </head>
 
@@ -98,13 +98,25 @@ $row = $select1->fetch();
                                 <input type="text" name="date_of_birth" class="form-control" id="date_of_birth" value="<?php echo $row['date_of_birth']; ?>" disabled>
                             </div>
                             <div class="mb-3">
+                                <label for="age" class="form-label">Age</label>
+                                <input type="text" name="age" class="form-control" id="age" value="<?php echo htmlspecialchars($row['age']); ?>" required onfocus="clearValue(this)">
+                            </div>
+                            <div class="mb-3">
                                 <p> </p>
                                 <label for="civil_status" class="form-label">Civil Status</label>
-                                <input type="text" name="civil_status" class="form-control" id="civil_status" value="<?php echo htmlspecialchars($row['civil_status']); ?>" required onfocus="clearValue(this)">
+                                <select name="civil_status" class="form-control" id="civil_status"  value="<?php echo htmlspecialchars($row['civil_status']); ?>" required onfocus="clearValue(this)">
+                                    <option value="single" <?php if ($row['civil_status'] === 'single') echo 'selected'; ?>>Single</option>
+                                    <option value="married" <?php if ($row['civil_status'] === 'married') echo 'selected'; ?>>Married</option>
+                                    <option value="separated" <?php if ($row['civil_status'] === 'separated') echo 'selected'; ?>>Separated</option>
+                                    <option value="widowed" <?php if ($row['civil_status'] === 'widowed') echo 'selected'; ?>>Widowed</option>
+                                 </select>
                             </div>
                             <div class="mb-3">
                                 <label for="gender" class="form-label">Gender</label>
-                                <input type="text" name="gender" class="form-control" id="gender" value="<?php echo htmlspecialchars($row['gender']); ?>" required onfocus="clearValue(this)">
+                                <select name="gender" class="form-control" id="gender"  value="<?php echo htmlspecialchars($row['gender']); ?>" required onfocus="clearValue(this)">
+                                    <option value="male" <?php if ($row['gender'] === 'male') echo 'selected'; ?>>Male</option>
+                                    <option value="female" <?php if ($row['gender'] === 'female') echo 'selected'; ?>>Female</option>
+                                 </select>
                             </div>
                             <button class="btn btn-primary nextBtn" type="button">Next</button>
                         </div>
@@ -132,7 +144,11 @@ $row = $select1->fetch();
                                 <div class="mb-3">
                                     <label for="educ" class="form-label">Degree/Certificate &
                                         Major</label>
-                                    <input type="text" name="educ" class="form-control" id="educ" value="<?php echo htmlspecialchars($row['educ']); ?>" required onfocus="clearValue(this)">
+                                    <select name="educ" class="form-control" id="educ"  value="<?php echo htmlspecialchars($row['educ']); ?>" required onfocus="clearValue(this)">
+                                    <option value="BSIT" <?php if ($row['educ'] === 'BSIT') echo 'selected'; ?>>BSIT</option>
+                                    <option value="TEP" <?php if ($row['educ'] === 'TEP') echo 'selected'; ?>>TEP</option>
+                                    <option value="EDUC" <?php if ($row['educ'] === 'EDUC') echo 'selected'; ?>>EDUC</option>
+                                 </select>
                                 </div>
                                 <div class="mb-3">
                                     <label for="start_year" class="form-label">Year Started</label>
@@ -161,12 +177,40 @@ $row = $select1->fetch();
                                     <label for="address" class="form-label">Permanent Address</label>
                                     <input type="text" name="address" class="form-control" id="address" value="<?php echo htmlspecialchars($row['address']); ?>" required onfocus="clearValue(this)">
                                 </div>
-                                <div class="mb-3">
+                                 <div class="mb-3">
                                     <label for="province" class="form-label">State/Provice/City</label>
                                     <input type="text" name="province" class="form-control" id="province" value="<?php echo htmlspecialchars($row['province']); ?>" required onfocus="clearValue(this)">
+
+                                    <div class="mb-3">
+                                    <label for="region" class="form-label">Region</label>
+                                    <select name="region" class="form-control" id="region"  value="<?php echo htmlspecialchars($row['region']); ?>" required onfocus="clearValue(this)">
+                                    <option value="Region I Ilocos Region" <?php if ($row['region'] === 'Region I  Ilocos Region') echo 'selected'; ?>>Region I – Ilocos Region</option>
+                                    <option value="Region II – Cagayan Valley" <?php if ($row['region'] === 'Region II – Cagayan Valley') echo 'selected'; ?>>Region II – Cagayan Valley</option>
+                                    <option value="Region III – Central Luzon" <?php if ($row['region'] === 'Region III – Central Luzon') echo 'selected'; ?>>Region III – Central Luzon</option>
+                                    <option value="Region IV‑A – CALABARZON" <?php if ($row['region'] === 'Region IV‑A – CALABARZON') echo 'selected'; ?>>Region IV‑A – CALABARZON</option>
+                                    <option value="MIMAROPA Region" <?php if ($row['region'] === 'MIMAROPA Region') echo 'selected'; ?>>MIMAROPA Region</option>
+                                    <option value="Region V – Bicol Region" <?php if ($row['region'] === 'Region V – Bicol Region') echo 'selected'; ?>>Region V – Bicol Region</option>
+                                    <option value="Region VI – Western Visayas" <?php if ($row['region'] === 'Region V – Bicol Region') echo 'selected'; ?>>Region V – Bicol Region</option>
+                                    <option value="Region VII – Central Visayas" <?php if ($row['region'] === 'Region VII – Central Visayas') echo 'selected'; ?>>Region VII – Central Visayas</option>
+                                    <option value="Region VIII – Eastern Visayas" <?php if ($row['region'] === 'Region VIII – Eastern Visayas') echo 'selected'; ?>>Region VIII – Eastern Visayas</option>
+                                    <option value="Region IX – Zamboanga Peninsula" <?php if ($row['region'] === 'Region IX – Zamboanga Peninsula') echo 'selected'; ?>>Region IX – Zamboanga Peninsula</option>
+                                    <option value="Region X – Northern Mindanao" <?php if ($row['region'] === 'Region X – Northern Mindanao') echo 'selected'; ?>>Region X – Northern Mindanao</option>
+                                    <option value="Region XI – Davao Region" <?php if ($row['region'] === 'Region XI – Davao Region') echo 'selected'; ?>>Region XI – Davao Region</option>
+                                    <option value="Region XII – SOCCSKSARGEN" <?php if ($row['region'] === 'Region XII – SOCCSKSARGEN') echo 'selected'; ?>>Region XII – SOCCSKSARGEN</option>
+                                    <option value="Region XIII – Caraga" <?php if ($row['region'] === 'Region XIII – Caraga') echo 'selected'; ?>>Region XIII – Caraga</option>
+                                    <option value="NCR – National Capital Region" <?php if ($row['region'] === 'NCR – National Capital Region') echo 'selected'; ?>>NCR – National Capital Region</option>
+                                    <option value="CAR – Cordillera Administrative Region" <?php if ($row['region'] === 'CAR – Cordillera Administrative Region') echo 'selected'; ?>>CAR – Cordillera Administrative Region</option>
+                                    <option value="BARMM – Bangsamoro Autonomous Region in Muslim Mindanao" <?php if ($row['region'] === 'BARMM – Bangsamoro Autonomous Region in Muslim Mindanao') echo 'selected'; ?>>BARMM – Bangsamoro Autonomous Region in Muslim Mindanao</option>
+                                 </select>
+                                 </div>
+
                                     <div class="mb-3">
                                         <label for="zipcode" class="form-label">Zip Code</label>
                                         <input type="text" name="zipcode" class="form-control" id="zipcode" value="<?php echo htmlspecialchars($row['zipcode']); ?>" required onfocus="clearValue(this)">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="date_created" class="form-label">Date Today</label>
+                                        <input type="date" name="date_created" class="form-control" id="date_created" value="<?php echo htmlspecialchars($row['zipcode']); ?>" required onfocus="clearValue(this)">
                                     </div>
 
                                     <button class="btn btn-secondary prevBtn" type="button">Previous</button>
