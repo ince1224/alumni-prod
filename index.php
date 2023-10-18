@@ -13,153 +13,67 @@ if (isset($_SESSION['status']) && $_SESSION['status'] != '') {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>NBSC Alumni</title>
     <link href="./css/font.css" rel="stylesheet">
     <link rel="stylesheet" href="./css/icon.css">
+    <link rel="stylesheet" href="./css/font.css">
     <link rel="stylesheet" href="./css/all.min.css">
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/bootstrap5.min.css">
-    <link rel="stylesheet" href="./css/prostyle.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
-        integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous">
-        </script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
-        </script>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-
-    <title>NBSC Alumni</title>
+    <link rel="stylesheet" href="./css/tailwind.min.css">
+    <link rel="stylesheet" href="./css/pstyle.css">
 </head>
-<style>
-    body {
-        font-family: 'Varela Round', sans-serif;
-    }
 
-    .modal-confirm {
-        color: #636363;
-        width: 325px;
-        margin: 30px auto;
-    }
-
-    .modal-confirm .modal-content {
-        padding: 20px;
-        border-radius: 5px;
-        border: none;
-    }
-
-    .modal-confirm .modal-header {
-        border-bottom: none;
-        position: relative;
-    }
-
-    .modal-confirm h4 {
-        text-align: center;
-        font-size: 26px;
-        margin: 30px 0 -15px;
-        width: calc(200% - 81px);
-    }
-
-    .modal-confirm .form-control,
-    .modal-confirm .btn {
-        min-height: 40px;
-        border-radius: 3px;
-    }
-
-    .modal-confirm .close {
-        position: absolute;
-        top: -5px;
-        right: -5px;
-    }
-
-    .modal-confirm .modal-footer {
-        border: none;
-        text-align: center;
-        border-radius: 5px;
-        font-size: 13px;
-    }
-
-    .modal-confirm .icon-box {
-        color: #fff;
-        position: absolute;
-        margin: 0 auto;
-        left: 0;
-        right: 0;
-        top: -70px;
-        width: 95px;
-        height: 95px;
-        border-radius: 50%;
-        z-index: 9;
-        background: #82ce34;
-        padding: 15px;
-        text-align: center;
-        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
-    }
-
-    .modal-confirm .icon-box i {
-        font-size: 58px;
-        position: relative;
-        top: 3px;
-    }
-
-    .modal-confirm.modal-dialog {
-        margin-top: 80px;
-    }
-
-    .modal-confirm .btn {
-        color: #fff;
-        border-radius: 4px;
-        background: #82ce34;
-        text-decoration: none;
-        transition: all 0.4s;
-        line-height: normal;
-        border: none;
-        width: calc(200% - 81px);
-    }
-
-    .modal-confirm .btn:hover,
-    .modal-confirm .btn:focus {
-        background: #6fb32b;
-        outline: none;
-    }
-
-    .trigger-btn {
-        display: inline-block;
-        margin: 100px auto;
-    }
-</style>
-
-<body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="70">
-    <nav class="navbar navbar-expand-lg py-3 sticky-top navbar-light bg-white">
+<body>
+    <title>Navbar</title>
+    </head>
+    <nav class="nav">
         <div class="container">
-            <a class="navbar-brand" href="index.php">
-                <img class="logo" src="img/logov2_adobe_express.svg" alt="">
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" id="homeLink">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#services">Events</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#contact">Contact</a>
-                    </li>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+        <div class="logo">
+    <a href="#">
+        <img src="./img/NBSCLOGO.png" alt="Your Logo">
+    </a>
+</div>
+            <div id="mainListDiv" class="main_list">
+                <ul class="navlinks">
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Portfolio</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <span class="navTrigger">
+                <i></i>
+                <i></i>
+                <i></i>
+            </span>
+        </div>
+    </nav>
+
+    <section class="bg-gray-900 text-white">
+        <div class="mx-auto max-w-screen-xl px-4 py-32 lg:flex lg:h-screen lg:items-center">
+            <div class="mx-auto max-w-3xl text-center">
+                <h1 class="bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 bg-clip-text text-3xl font-extrabold text-transparent sm:text-5xl">
+                    NORTHERN BUKIDNON STATE COLLEGE ALUMNI
+
+                    <span class="sm:block"> </span>
+                </h1>
+
+
+                <div class="mt-8 flex flex-wrap justify-center gap-4">
+                <button type="button" class="block w-full rounded border border-blue-600 px-12 py-3 text-sm font-medium text-white hover:bg-blue-600 focus:outline-none focus:ring active:bg-blue-500 sm:w-auto" data-bs-toggle="modal"
                         data-bs-target="#staticBackdrop">
                         Join Us
                     </button>
+                </div>
             </div>
         </div>
-    </nav>
-    <!-- Modal -->
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        <!-- modal -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -210,15 +124,17 @@ if (isset($_SESSION['status']) && $_SESSION['status'] != '') {
                         </div>
                     </div>
                     <div class="form-group mb-3 input-div">
-                        <label>Email</label>
+                        <label>Batch</label>
                         <div class="input-group">
                             <div class="input-group-prepend">
-                            <svg class="svg-icon-envelope" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                            <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
-                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+  <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+  <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+</svg>
+</svg>
                             </div>
-                            <input type="eaddress" class="form-control" name="eaddress"
-                                placeholder="Enter Email Address">
+                            <input type="batch" class="form-control" name="batch"
+                                placeholder="Enter Your Batch">
                         </div>
                     </div>
 
@@ -252,41 +168,10 @@ if (isset($_SESSION['status']) && $_SESSION['status'] != '') {
     </div>
 
     </form>
-
-
-    <!-- modal -->
-
-
-    <!-- Modal HTML -->
-
-    <!-- HERO -->
-    <div class="form-group mb-0">
-    </div>
-    <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active" data-bs-interval="10000">
-                <img src="./img/NBSC BLDG FINAL NO WIRES JPEG.jpg" class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item" data-bs-interval="10000">
-                <img src="./img/cover1.jpg" class="d-block w-100" alt="...">
-            </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval"
-            data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval"
-            data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-    </div>
-    <div class="form-group mb-3">
-    </div>
-    
-    </div>
-    <!-- //HERO -->
+        <!-- end modal -->
+    </section>
+    <section class="home">
+    </section>
     <div class="container">
         <div class="row mb-5">
             <div class="col-md-8 mx-auto text-center">
@@ -296,13 +181,12 @@ if (isset($_SESSION['status']) && $_SESSION['status'] != '') {
             </div>
         </div>
         <!-- FEATURES -->
-        <div class="form-group mb-10">
+        <div class="form-group mb-0">
             <div class="form-group mb-3">
                 <div class="card mb-3" style="max-width: 540px;">
                     <div class="row g-0">
                         <div class="col-md-4">
-                            <img src="https://nbsc.edu.ph/wp-content/uploads/2022/11/Markines-Maria-Theresa-B-117022-150x150.jpg"
-                                class="img-fluid rounded-start" alt="...">
+                            <img src="https://nbsc.edu.ph/wp-content/uploads/2022/11/Markines-Maria-Theresa-B-117022-150x150.jpg" class="img-fluid rounded-start" alt="...">
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
@@ -353,17 +237,40 @@ if (isset($_SESSION['status']) && $_SESSION['status'] != '') {
         </div>
         </footer>
 
-        
+
+
+        <!-- Jquery needed -->
+        <script src="./js/3.1.1jquery.min.js"></script>
+        <script src="./js/scripts.js"></script>
+
         <script>
-            document.getElementById("loginBtn").addEventListener("click", function () {
+    // Delay in milliseconds before hiding the modal (e.g., 5000ms = 5 seconds)
+    const delay = 5000;
+
+    // Function to hide the modal after the specified delay
+    function hideModal() {
+        // Find the modal element using its x-show attribute
+        const modal = document.querySelector('[x-show="modelOpen"]');
+
+        // Change the value of modelOpen to false to hide the modal
+        modal.setAttribute('x-show', 'false');
+    }
+
+    // Set a timer to automatically hide the modal
+    setTimeout(hideModal, delay);
+</script>
+
+        <!-- Function used to shrink nav bar removing paddings and adding black background -->
+        <script>
+            document.getElementById("loginBtn").addEventListener("click", function() {
                 // Check if the required fields are empty
                 const studentId = document.querySelector('input[name="Stud_id"]').value;
                 const firstName = document.querySelector('input[name="first_name"]').value;
                 const lastName = document.querySelector('input[name="last_name"]').value;
-                const email = document.querySelector('input[name="eaddress"]').value;
-                
+                const batch = document.querySelector('input[name="batch"]').value;
 
-                if (!studentId || !firstName || !lastName || !email) {
+
+                if (!studentId || !firstName || !lastName || !batch) {
                     alert("Please fill in all the required fields.");
                 } else {
                     const accountExists = true; // Replace this with your actual check
@@ -381,23 +288,30 @@ if (isset($_SESSION['status']) && $_SESSION['status'] != '') {
                 }
             });
         </script>
+        <script>
+            $(window).scroll(function() {
+                if ($(document).scrollTop() > 50) {
+                    $('.nav').addClass('affix');
+                    console.log("OK");
+                } else {
+                    $('.nav').removeClass('affix');
+                }
+            });
+        </script>
 
         <script>
-            let prevScrollPos = window.pageYOffset;
-            const navbar = document.querySelector('.navbar');
+            $('.navTrigger').click(function() {
+                $(this).toggleClass('active');
+                console.log("Clicked menu");
+                $("#mainListDiv").toggleClass("show_list");
+                $("#mainListDiv").fadeIn();
 
-            window.onscroll = function () {
-                let currentScrollPos = window.pageYOffset;
-                if (prevScrollPos > currentScrollPos) {
-                    navbar.style.transform = 'translateY(0)';
-                } else {
-                    navbar.style.transform = 'translateY(-100%)';
-                }
-                prevScrollPos = currentScrollPos;
-            }
+            });
         </script>
+        <script src="./js/3.1.1jquery.min.js"></script>
+        <script src="./js/umd/popper.min.js"></script>
+        <script src="./js/bootstrap.min.js"></script>
         <script src="./js/jquery.min.js"></script>
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="./js/bootstrap5.min.js"></script>
         <script src="./js/jquery-3.6.0.min.js"></script>
         <script src="./js/popper.min.js"></script>

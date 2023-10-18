@@ -102,6 +102,9 @@ $row = $select1->fetch();
                                 <input type="text" name="age" class="form-control" id="age" value="<?php echo htmlspecialchars($row['age']); ?>" required onfocus="clearValue(this)">
                             </div>
                             <div class="mb-3">
+    <label for="email_address" class="form-label">Email Address</label>
+    <input type="email_address" name="email_address" class="form-control" id="email_address" value="<?php echo htmlspecialchars($row['email_address']); ?>" required onfocus="clearValue(this)"></div>
+                            <div class="mb-3">
                                 <p> </p>
                                 <label for="civil_status" class="form-label">Civil Status</label>
                                 <select name="civil_status" class="form-control" id="civil_status"  value="<?php echo htmlspecialchars($row['civil_status']); ?>" required onfocus="clearValue(this)">
@@ -118,6 +121,7 @@ $row = $select1->fetch();
                                     <option value="female" <?php if ($row['gender'] === 'female') echo 'selected'; ?>>Female</option>
                                  </select>
                             </div>
+                           
                             <button class="btn btn-primary nextBtn" type="button">Next</button>
                         </div>
 

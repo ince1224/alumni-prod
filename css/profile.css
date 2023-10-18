@@ -8,8 +8,8 @@
     color: var(--body);
     /* padding: 20px; */
     position: relative; /* Add this line to make positioning the pseudo-elements easier */
-    background: url('../img/alumni0.png') center/cover;
-    /* background: #7d94e5; */
+    /* background: url('../img/alumni0.png') center/cover; */
+    background: #7d94e5;
     background-size: 100% 100%;
     animation: wave 10s linear infinite;
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5); /* Add shadow as before */

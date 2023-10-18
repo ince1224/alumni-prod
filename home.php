@@ -23,17 +23,12 @@ $row = $select1->fetch();
   <title>Fill Up Form</title>
 
   <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
   <link href="./css/font.css" rel="stylesheet">
   <link rel="stylesheet" href="./css/icon.css">
-  <link rel="stylesheet" href="./css/all.min.css">
   <link rel="stylesheet" href="./css/bootstrap5.min.css">
   <link rel="stylesheet" href="css/home.css">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous">
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
-  </script>
+  
+  <script src="./js/jquery-3.6.0.min.js"></script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
@@ -69,7 +64,6 @@ $row = $select1->fetch();
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </button>
         </div>
         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
         <div class="modal-footer">
@@ -141,140 +135,294 @@ $row = $select1->fetch();
           <div class="nav">
             <ul>
 
-              <li onclick="tabs(0)" class="user-post active">EMPLOYED</li>
-              <li onclick="tabs(1)" class="user-review">UNEMPLOYED</li>
-              <li onclick="tabs(2)" class="user-setting"> SELFEMPLOYED</li>
+              <li id="selfemployed" onclick="tabs(0)" class="user-review">SELFEMPLOYED</li>
+              <li id="unemployed" onclick="tabs(1)" class="user-post active">UNEMPLOYED</li>
+              <li id="employed" onclick="tabs(2)" class="user-setting">EMPLOYED</li>
             </ul>
           </div>
-          <form method="post" action="">
-            <div class="profile-body">
-              <div class="profile-posts tab">
-                <div class="container-box">
-                  <div class="mb-3">
-                    <div class="row justify-content-left">
-                    </div>
-                  </div>
-                  <div class="profile-reviews tab">
-                    <h1>User reviews</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam pariatur officia, aperiam quidem quasi, tenetur molestiae. Architecto mollitia laborum possimus iste esse. Perferendis tempora consectetur, quae qui nihil voluptas. Maiores debitis
-                      repellendus excepturi quisquam temporibus quam nobis voluptatem, reiciendis distinctio deserunt vitae! Maxime provident, distinctio animi commodi nemo, eveniet fugit porro quos nesciunt quidem a, corporis nisi dolorum minus sit eaque error
-                      sequi ullam. Quidem ut fugiat, praesentium velit aliquam!</p>
-                  </div>
-                  <div class="profile-settings tab">
-                    <div class="account-setting">
-                      <h1>Acount Setting</h1>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit omnis eaque, expedita nostrum, facere libero provident laudantium. Quis, hic doloribus! Laboriosam nemo tempora praesentium. Culpa quo velit omnis, debitis maxime, sequi
-                        animi dolores commodi odio placeat, magnam, cupiditate facilis impedit veniam? Soluta aliquam excepturi illum natus adipisci ipsum quo, voluptatem, nemo, commodi, molestiae doloribus magni et. Cum, saepe enim quam voluptatum vel debitis
-                        nihil, recusandae, omnis officiis tenetur, ullam rerum.</p>
-                    </div>
-                  </div>
+
+          <form method="POST" action="selfemployed.php">
+            <div class="profile-settings tab">
+              <div class="step" id="step1">
+                <input type="hidden" name="Stud_id" class="form-control" id="Stud_id" value="<?php echo $row['Stud_id']; ?>" required>
+                <input type="hidden" name="education_id" class="form-control" id="education_id" value="<?php echo $row['education_id']; ?>" required>
+              </div>
+              <div class="mb-2">
+                <label for="self_employed" class="form-label">1. How long have you been self-employed, and what type of work or business are you engaged in?</label>
+                <input type="text" name="self_employed" class="form-control" id="self_employed" required>
+              </div>
+
+              <div class="mb-3">
+                <label for="motivated" class="form-label">2.What motivated you to become self-employed? (E.g., autonomy, passion, necessity)
+                </label>
+                <input type="text" name="motivated" class="form-control" id="motivated" required>
+              </div>
+
+              <div class="mb-3">
+                <label for="experience" class="form-label">3. What are the main advantages you have experienced as a self-employed individual?</label>
+                <input type="text" name="experience" class="form-control" id="experience" required>
+              </div>
+
+              <div class="mb-3">
+                <label for="challenges" class="form-label">4. What are the most significant challenges you face as a self-employed person, and how do you manage them?</label>
+                <input type="text" name="challenges" class="form-control" id="challenges" required>
+              </div>
+
+              <div class="mb-3">
+                <label for="balance" class="form-label">5.How do you maintain a work-life balance as a self-employed individual, and what strategies have worked best for you?</label>
+                <input type="text" name="balance" class="form-control" id="balance" required>
+              </div>
+
+              <div class="mb-3">
+                <label for="financial_balance" class="form-label">6.Have you faced any financial or administrative hurdles unique to self-employment, such as tax issues or access to financing?</label>
+                <input type="text" name="financial_balance" class="form-control" id="financial_balance" required>
+              </div>
+
+              <div class="mb-3">
+                <label for="business_plan" class="form-label">7. Do you have a business plan or strategy for the future of your self-employment? If so, what are your key goals or objectives?</label>
+                <input type="text" name="business_plan" class="form-control" id="business_plan" required>
+              </div>
+
+              <div class="mb-3">
+                <label for="resource" class="form-label">8.Have you utilized any resources or support networks for self-employed individuals, such as business associations or mentorship programs?</label>
+                <input type="text" name="resource" class="form-control" id="resource" required>
+              </div>
+
+              <div class="mb-3">
+                <label for="professional" class="form-label">9.How do you ensure your professional development and stay up-to-date in your field as a self-employed person?</label>
+                <input type="text" name="professional" class="form-control" id="professional" required>
+              </div>
+
+              <div class="mb-3">
+                <p></p>
+                <label for="insights" class="form-label">10.What advice or insights would you share with others considering self-employment or those currently self-employed to help them succeed?</label>
+                <input type="text" name="insights" class="form-control" id="insights" required>
+              </div>
+              <button class="btn btn-primary nextBtn" type="submit">Submit</button>
+            </div>
           </form>
-          <form method="POST"action="employed.php">
-            
-            <div class="step" id="step1">
-              <input type="hidden" name="Stud_id" class="form-control" id="Stud_id" value="<?php echo $row['Stud_id']; ?>" required>
-              <input type="hidden" name="education_id" class="form-control" id="education_id" value="<?php echo $row['education_id']; ?>" required>
+
+          <form method="POST" action="unemployed.php">
+            <div class="profile-reviews tab">
+              <div class="step" id="step1">
+                <input type="hidden" name="Stud_id" class="form-control" id="Stud_id" value="<?php echo $row['Stud_id']; ?>" required>
+              </div>
+              <div class="mb-2">
+                <label for="current_umenployed" class="form-label">1. How long have you been unemployed?</label>
+                <input type="text" name="current_umenployed" class="form-control" id="current_umenployed" required>
+              </div>
+
+              <div class="mb-3">
+                <label for="seeking" class="form-label">2.Have you been actively seeking employment during your period of unemployment? YES/ NO / NOT SURE ONLY THE ANSWER
+                </label>
+                <input type="text" name="seeking" class="form-control" id="seeking" required>
+              </div>
+
+              <div class="mb-3">
+                <label for="reasons" class="form-label">3. What are the primary reasons for your unemployment?</label>
+                <input type="text" name="reasons" class="form-control" id="reasons" required>
+              </div>
+
+              <div class="mb-3">
+                <label for="challenges" class="form-label">4. Have you encountered any specific challenges or barriers in your job search? If so, please describe.</label>
+                <input type="text" name="challenges" class="form-control" id="challenges" required>
+              </div>
+
+              <div class="mb-3">
+                <label for="status" class="form-label">5. How do you feel your current unemployment status has impacted your mental and emotional well-being?</label>
+                <input type="text" name="status" class="form-control" id="status" required>
+              </div>
+
+              <div class="mb-3">
+                <label for="benefits" class="form-label">6.Are you receiving any form of government assistance or unemployment benefits? If yes, please specify.</label>
+                <input type="text" name="benefits" class="form-control" id="benefits" required>
+              </div>
+
+              <div class="mb-3">
+                <label for="opportunities" class="form-label">7. What types of job opportunities are you actively seeking?</label>
+                <input type="text" name="opportunities" class="form-control" id="opportunities" required>
+              </div>
+
+              <div class="mb-3">
+                <label for="resource" class="form-label">8.What additional support or resources do you believe would be most helpful for you during your job search?</label>
+                <input type="text" name="resource" class="form-control" id="resource" required>
+              </div>
+
+              <div class="mb-3">
+                <label for="pursuing_educ" class="form-label">9.Have you considered pursuing education or training to improve your job prospects? (Yes/No)</label>
+                <input type="text" name="pursuing_educ" class="form-control" id="pursuing_educ" required>
+              </div>
+
+              <div class="mb-3">
+                <p></p>
+                <label for="online_job" class="form-label">10.Have you utilized online job search platforms or websites in your job search efforts?</label>
+                <input type="text" name="online_job" class="form-control" id="online_job" required>
+              </div>
+              <button class="btn btn-primary nextBtn" type="submit">Submit</button>
             </div>
-            <div class="mb-2">
-              <label for="current_job" class="form-label">1. Is your current job full-time or part-time?</label>
-              <input type="text" name="current_job" class="form-control" id="current_job" required>
+          </form>
+          <div class="profile-body">
+            <div class="profile-posts tab">
+              <div class="container-box">
+                <div class="mb-3">
+                  <div class="row justify-content-left">
+                  </div>
+                </div>
+
+                <form method="POST" action="employed.php">
+
+                  <div class="step" id="step1">
+                    <input type="hidden" name="Stud_id" class="form-control" id="Stud_id" value="<?php echo $row['Stud_id']; ?>" required>
+                    <input type="hidden" name="education_id" class="form-control" id="education_id" value="<?php echo $row['education_id']; ?>" required>
+                  </div>
+                  <div class="mb-2">
+                    <label for="current_job" class="form-label">1. Is your current job full-time or part-time?</label>
+                    <input type="text" name="current_job" class="form-control" id="current_job" required>
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="job_title" class="form-label">2.What is your current job title or occupation?
+                    </label>
+                    <input type="text" name="job_title" class="form-control" id="job_title" required>
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="employer" class="form-label">3. How long have you been employed in your current job or position?</label>
+                    <input type="text" name="employer" class="form-control" id="employer" required>
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="employer_sector" class="form-label">4. What organization or sector does your current employer operate in?</label>
+                    <input type="text" name="employer_sector" class="form-control" id="employer_sector" required>
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="satisfaction" class="form-label">5. Are you satisfied with your current employment situation?</label>
+                    <input type="text" name="satisfaction" class="form-control" id="satisfaction" required>
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="career_growth" class="form-label">6. Have you experienced any significant career growth or promotions in the past year?</label>
+                    <input type="text" name="career_growth" class="form-control" id="career_growth" required>
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="income" class="form-label">7. What is your approximate annual income from your job (in your local currency)?</label>
+                    <input type="text" name="income" class="form-control" id="income" required>
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="experience" class="form-label">8.Have you experienced any significant changes in your employment situation in the past year (e.g., promotion, job loss, change of employer)?</label>
+                    <input type="text" name="experience" class="form-control" id="experience" required>
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="traning" class="form-label">9.Are you currently pursuing any further education or training related to your job or career?</label>
+                    <input type="text" name="traning" class="form-control" id="traning" required>
+                  </div>
+
+                  <div class="mb-3">
+                    <p></p>
+                    <label for="factors" class="form-label">10.Do you have any additional comments or thoughts about your current employment situation that you would like to share?</label>
+                    <input type="text" name="factors" class="form-control" id="factors" required>
+                  </div>
+                  <button class="btn btn-primary nextBtn" type="submit">Submit</button>
+                </form>
+
+              </div>
             </div>
-
-            <div class="mb-3">
-              <label for="job_title" class="form-label">2.What is your current job title or occupation?
-              </label>
-              <input type="text" name="job_title" class="form-control" id="job_title" required>
-            </div>
-
-            <div class="mb-3">
-              <label for="employer" class="form-label">3. How long have you been employed in your current job or position?</label>
-              <input type="text" name="employer" class="form-control" id="employer" required>
-            </div>
-
-            <div class="mb-3">
-              <label for="employer_sector" class="form-label">4. What industry or sector does your current employer operate in?</label>
-              <input type="text" name="employer_sector" class="form-control" id="employer_sector" required>
-            </div>
-
-            <div class="mb-3">
-              <label for="satisfaction" class="form-label">5. Are you satisfied with your current employment situation?</label>
-              <input type="text" name="satisfaction" class="form-control" id="satisfaction" required>
-            </div>
-
-            <div class="mb-3">
-              <label for="career_growth" class="form-label">6. Have you experienced any significant career growth or promotions in the past year?</label>
-              <input type="text" name="career_growth" class="form-control" id="career_growth" required>
-            </div>
-
-            <div class="mb-3">
-              <label for="income" class="form-label">7. What is your approximate annual income from your job (in your local currency)?</label>
-              <input type="text" name="income" class="form-control" id="income" required>
-            </div>
-
-            <div class="mb-3">
-              <label for="experience" class="form-label">8.Have you experienced any significant changes in your employment situation in the past year (e.g., promotion, job loss, change of employer)?</label>
-              <input type="text" name="experience" class="form-control" id="experience" required>
-            </div>
-
-            <div class="mb-3">
-              <label for="traning" class="form-label">9.Are you currently pursuing any further education or training related to your job or career?</label>
-              <input type="text" name="traning" class="form-control" id="traning" required>
-            </div>
-
-            <div class="mb-3">
-              <p></p>
-              <label for="factors" class="form-label">10.Do you have any additional comments or thoughts about your current employment situation that you would like to share?</label>
-              <input type="text" name="factors" class="form-control" id="factors" required>
-            </div>
-            <button class="btn btn-primary nextBtn" type="submit">Submit</button>
-         </form>
-  </div>
-  </div>
-  </div>
-  </form>
-  <footer>
-    <div class="footer-top">
-      <div class="container">
-        <div class="row gy-4">
-        </div>
-        <div class="col-lg-2">
-          <h5 class="text-white">More</h5>
-          <ul class="list-unstyled">
-            <li><a href="#">Privacy & Policy</a></li>
-          </ul>
-        </div>
-
-        <h5 class="text-white">Contact</h5>
-        <ul class="list-unstyled">
-          <li>Address: NORTHERN BUKIDNON STATE COLLEGE, TANKULAN MANOLO FORTICH BUKIDNON</li>
-          <li>Email: NBSC.EDU.PH</li>
-          <li>Phone: (603) 555-0123</li>
-        </ul>
-      </div>
-      <div class="container">
-        <div class="row">
-        </div>
-  </footer>
-  <script>
-    let prevScrollPos = window.pageYOffset;
-    const navbar = document.querySelector('.navbar');
-
-    window.onscroll = function() {
-      let currentScrollPos = window.pageYOffset;
-      if (prevScrollPos > currentScrollPos) {
-        navbar.style.transform = 'translateY(0)';
-      } else {
-        navbar.style.transform = 'translateY(-100%)';
-      }
-      prevScrollPos = currentScrollPos;
-    }
-  </script>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="js/all/index.js"></script>
+          </div>
 
 
+          <script>
+            function clearValue(input) {
+              if (input.getAttribute('data-initial') !== 'true') {
+                input.value = ''; // Clear the current value
+                input.setAttribute('data-initial', 'true'); // Set a flag to indicate that it has been cleared
+              }
+            }
 
+            // Add event listeners to all elements with the 'onfocus' attribute
+            var elements = document.querySelectorAll('[onfocus]');
+            elements.forEach(function(element) {
+              element.addEventListener('focus', function() {
+                var initialFlag = this.getAttribute('data-initial');
+                if (initialFlag === 'true') {
+                  this.value = ''; // Clear the value again if the flag is set
+                }
+              });
+            });
+
+            $(document).ready(function() {
+              var currentStep = 1;
+
+              $('.nextBtn').click(function() {
+                // Scroll to the top of the page smoothly
+                $('html, body').animate({
+                  scrollTop: 0
+                }, 100); // You can adjust the scroll duration (in milliseconds) as needed
+
+                // Hide the current step and show the next step
+                $('#step' + currentStep).addClass('d-none');
+                currentStep++;
+                $('#step' + currentStep).removeClass('d-none');
+              });
+
+              $('.prevBtn').click(function() {
+                $('#step' + currentStep).addClass('d-none');
+                currentStep--;
+                $('#step' + currentStep).removeClass('d-none');
+              });
+
+              $('#stepForm').submit(function(e) {
+                e.preventDefault();
+                alert('Form submitted successfully!');
+                // Add form submission logic here
+              });
+            });
+
+            $(".nav ul li").click(function() {
+              $(this)
+                .addClass("active")
+                .siblings()
+                .removeClass("active");
+            });
+
+            const tabBtn = document.querySelectorAll(".nav ul li");
+            const tab = document.querySelectorAll(".tab");
+
+            function tabs(panelIndex) {
+              tab.forEach(function(node) {
+                node.style.display = "none";
+              });
+              tab[panelIndex].style.display = "block";
+            }
+            tabs(0);
+          </script>
+
+          <script>
+            let prevScrollPos = window.pageYOffset;
+            const navbar = document.querySelector('.navbar');
+
+            window.onscroll = function() {
+              let currentScrollPos = window.pageYOffset;
+              if (prevScrollPos > currentScrollPos) {
+                navbar.style.transform = 'translateY(0)';
+              } else {
+                navbar.style.transform = 'translateY(-100%)';
+              }
+              prevScrollPos = currentScrollPos;
+            }
+          </script>
+          <script src="./js/3.1.1jquery.min.js"></script>
+        <script src="./js/umd/popper.min.js"></script>
+        <script src="./js/bootstrap.min.js"></script>
+        <script src="./js/jquery.min.js"></script>
+        <script src="./js/bootstrap5.min.js"></script>
+        <script src="./js/jquery-3.6.0.min.js"></script>
+        <script src="./js/popper.min.js"></script>
+        <script src="js/all/index.js"></script>
+        </script>
 </body>
 
 </html>

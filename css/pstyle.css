@@ -1,0 +1,542 @@
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Quicksand", sans-serif;
+    font-size: 62.5%;
+    font-size: 15px;
+}
+
+.nav {
+  /* background-color: white; */
+    width: 100%;
+    height: 65px;
+    position: fixed;
+    line-height: 65px;
+    text-align: center;
+}
+
+.nav div.logo {
+    float: left;
+    width: auto;
+    height: auto;
+    padding-left: 3rem;
+}
+
+.nav div.logo a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 2.5rem;
+}
+
+.nav div.logo a:hover {
+    color: #00E676;
+}
+
+.nav div.main_list {
+    height: 65px;
+    float: right;
+}
+
+.nav div.main_list ul {
+    width: 100%;
+    height: 65px;
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav div.main_list ul li {
+    width: auto;
+    height: 65px;
+    padding: 0;
+    padding-right: 3rem;
+}
+
+.nav div.main_list ul li a {
+    text-decoration: none;
+    color: #040000;
+    line-height: 65px;
+    font-size: medium;
+}
+
+.nav div.main_list ul li a:hover {
+    color: #00E676;
+}
+.logo img {
+  max-width: 100%;
+  height: auto;
+  width: 163px;
+  line-height: 65px;
+  position: absolute;
+  top: 25px;
+  bottom: 20px;
+  left: 57px;
+  right: 20px;
+
+}
+
+/* Home section */
+
+
+.navTrigger {
+    display: none;
+}
+
+.nav {
+    padding-top: 20px;
+    height: 96px;
+    -webkit-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+}
+
+
+/* Media qurey section */
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .container {
+        margin: 0;
+        
+    }
+}
+@media (min-width: 1280px) {
+    .container {
+      max-width: 1433px;
+}
+
+}
+
+@media screen and (max-width:768px) {
+    .navTrigger {
+        display: block;
+    }
+    .nav div.logo {
+        margin-left: 15px;
+    }
+    .nav div.main_list {
+        width: 100%;
+        height: 0;
+        overflow: hidden;
+    }
+    .nav div.show_list {
+        height: auto;
+        display: none;
+    }
+    .nav div.main_list ul {
+        flex-direction: column;
+        width: 100%;
+        height: 48vh;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        background-color: #f1ebeb;
+        /*same background color of navbar*/
+        background-position: center top;
+    }
+    .nav div.main_list ul li {
+        width: 100%;
+        text-align: right;
+    }
+    .nav div.main_list ul li a {
+        text-align: center;
+        width: 100%;
+        padding: 20px;
+    }
+    .nav div.media_button {
+        display: block;
+    }
+}
+.font-extrabold {
+  font-weight: 900;
+}
+
+
+/* Animation */
+/* Inspiration taken from Dicson https://codemyui.com/simple-hamburger-menu-x-mark-animation/ */
+
+.navTrigger {
+    cursor: pointer;
+    width: 30px;
+    height: 25px;
+    margin: auto;
+    position: absolute;
+    right: 30px;
+    top: 0;
+    bottom: 0;
+}
+
+.navTrigger i {
+    background-color: #fff;
+    border-radius: 2px;
+    content: '';
+    display: block;
+    width: 100%;
+    height: 4px;
+}
+
+.navTrigger i:nth-child(1) {
+    -webkit-animation: outT 0.8s backwards;
+    animation: outT 0.8s backwards;
+    -webkit-animation-direction: reverse;
+    animation-direction: reverse;
+}
+
+.navTrigger i:nth-child(2) {
+    margin: 5px 0;
+    -webkit-animation: outM 0.8s backwards;
+    animation: outM 0.8s backwards;
+    -webkit-animation-direction: reverse;
+    animation-direction: reverse;
+}
+
+.navTrigger i:nth-child(3) {
+    -webkit-animation: outBtm 0.8s backwards;
+    animation: outBtm 0.8s backwards;
+    -webkit-animation-direction: reverse;
+    animation-direction: reverse;
+}
+
+.navTrigger.active i:nth-child(1) {
+    -webkit-animation: inT 0.8s forwards;
+    animation: inT 0.8s forwards;
+}
+
+.navTrigger.active i:nth-child(2) {
+    -webkit-animation: inM 0.8s forwards;
+    animation: inM 0.8s forwards;
+}
+
+.navTrigger.active i:nth-child(3) {
+    -webkit-animation: inBtm 0.8s forwards;
+    animation: inBtm 0.8s forwards;
+}
+@keyframes inM {
+    50% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(45deg);
+    }
+}
+
+@-webkit-keyframes outM {
+    50% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(45deg);
+    }
+}
+
+@keyframes outM {
+    50% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(45deg);
+    }
+}
+
+@-webkit-keyframes inT {
+    0% {
+        -webkit-transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        -webkit-transform: translateY(9px) rotate(0deg);
+    }
+    100% {
+        -webkit-transform: translateY(9px) rotate(135deg);
+    }
+}
+
+@keyframes inT {
+    0% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(9px) rotate(0deg);
+    }
+    100% {
+        transform: translateY(9px) rotate(135deg);
+    }
+}
+
+@-webkit-keyframes outT {
+    0% {
+        -webkit-transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        -webkit-transform: translateY(9px) rotate(0deg);
+    }
+    100% {
+        -webkit-transform: translateY(9px) rotate(135deg);
+    }
+}
+
+@keyframes outT {
+    0% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(9px) rotate(0deg);
+    }
+    100% {
+        transform: translateY(9px) rotate(135deg);
+    }
+}
+
+@-webkit-keyframes inBtm {
+    0% {
+        -webkit-transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        -webkit-transform: translateY(-9px) rotate(0deg);
+    }
+    100% {
+        -webkit-transform: translateY(-9px) rotate(135deg);
+    }
+}
+
+@keyframes inBtm {
+    0% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-9px) rotate(0deg);
+    }
+    100% {
+        transform: translateY(-9px) rotate(135deg);
+    }
+}
+
+@-webkit-keyframes outBtm {
+    0% {
+        -webkit-transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        -webkit-transform: translateY(-9px) rotate(0deg);
+    }
+    100% {
+        -webkit-transform: translateY(-9px) rotate(135deg);
+    }
+}
+
+@keyframes outBtm {
+    0% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-9px) rotate(0deg);
+    }
+    100% {
+        transform: translateY(-9px) rotate(135deg);
+    }
+}
+
+.affix {
+    padding: 0;
+    background-color: #ffffff;
+}
+
+.myH2 {
+	text-align:center;
+	font-size: 4rem;
+}
+.myP {
+	text-align: justify;
+	padding-left:15%;
+	padding-right:15%;
+	font-size: 20px;
+}
+@media all and (max-width:700px){
+	.myP {
+		padding:2%;
+	}
+}
+
+.bg-gray-900 {
+  background-image: url('../img/logo\ nbsc.png');
+  background-position: center center;
+  background-size: 1500.89px 765.556px;
+  background-repeat: no-repeat;
+  text-align: center;
+}
+  /* paste */
+  .btn {
+    padding: 14px 19px;
+    border-width: 2px;
+    border-radius: 5px;
+    margin: 0 7px 1px;
+    background-color: #007bff; /* Background color */
+    color: #fff; /* Text color */
+    font-weight: bold;
+    text-transform: uppercase; /* Convert text to uppercase */
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .btn:hover {
+    background-color: #0056b3; /* Hover background color */
+    color: #fff; /* Hover text color */
+  }
+  
+  .btn-previous {
+    margin-right: 20px; /* Add margin to separate the buttons */
+  }
+  
+  .btn-submit {
+    margin-left: 20px; /* Add margin to separate the buttons */
+  }
+  
+ 
+  
+  .bi-person-circle {
+    width: 50px; 
+    height: 50px; 
+  }
+  .svg-icon {
+    width: 50px; /* Set your desired width */
+    height: 50px; /* Set your desired height */
+    fill: #000; /* Set the color of the icon */
+  }
+  .svg-icon-envelope {
+    width: 50px; /* Set your desired width */
+    height: 50px; /* Set your desired height */
+    fill: #000; /* Set the color of the icon */
+  }
+
+  label {
+    display: inline-block;
+    text-align: left;
+    display: block;
+    font-weight: bold;
+    margin: 0 28px 10px;
+}
+  
+  
+  /* Adjust the size of the text boxes */
+  .form-control {
+    background-color: transparent;
+      border: none;
+      border-bottom: 1px solid #000; /* Adjust the color as needed */
+      border-radius: 0;
+  }
+  
+  .form-control {
+    padding: 10px;
+    font-size: 18px;
+    text-align: left;
+    margin: 0 30px;
+    background-color: transparent;
+  }
+  
+  body {
+    font-family: 'Varela Round', sans-serif;
+  }
+  
+  .modal-content{
+    background: rgba(255,255,255,0.5);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.25);
+  }
+   .modal-confirm {
+          color: #636363;
+          width: 325px;
+          margin: 30px auto;
+      }
+  
+      .modal-confirm .modal-content {
+          padding: 20px;
+          border-radius: 5px;
+          border: none;
+      }
+  
+      .modal-confirm .modal-header {
+          border-bottom: none;
+          position: relative;
+          color: #0a0a0a;
+      }
+      .modal-body{
+        color: #0a0a0a;
+      }
+  
+      .modal-confirm h4 {
+          text-align: center;
+          font-size: 26px;
+          margin: 30px 0 -15px;
+          width: calc(200% - 81px);
+      }
+  
+      .modal-confirm .form-control,
+      .modal-confirm .btn {
+          min-height: 40px;
+          border-radius: 3px;
+      }
+  
+      .modal-confirm .close {
+          position: absolute;
+          top: -5px;
+          right: -5px;
+      }
+  
+      .modal-confirm .modal-footer {
+          border: none;
+          text-align: center;
+          border-radius: 5px;
+          font-size: 13px;
+      }
+  
+      .modal-confirm .icon-box {
+          color: #fff;
+          position: absolute;
+          margin: 0 auto;
+          left: 0;
+          right: 0;
+          top: -70px;
+          width: 95px;
+          height: 95px;
+          border-radius: 50%;
+          z-index: 9;
+          background: #82ce34;
+          padding: 15px;
+          text-align: center;
+          box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+      }
+  
+      .modal-confirm .icon-box i {
+          font-size: 58px;
+          position: relative;
+          top: 3px;
+      }
+  
+      .modal-confirm.modal-dialog {
+          margin-top: 80px;
+      }
+  
+      .modal-confirm .btn {
+          color: #fff;
+          border-radius: 4px;
+          background: #82ce34;
+          text-decoration: none;
+          transition: all 0.4s;
+          line-height: normal;
+          border: none;
+          width: calc(200% - 81px);
+      }
+  
+      .modal-confirm .btn:hover,
+      .modal-confirm .btn:focus {
+          background: #6fb32b;
+          outline: none;
+      }
+  
+      .trigger-btn {
+          display: inline-block;
+          margin: 100px auto;
+      }
+      
+  
